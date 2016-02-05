@@ -1,19 +1,23 @@
 var express = require('express'),
-    bodyParser = require('body-parser'),
-    mongoose = require('mongoose'),
-    passport = require('passport'),
-    Strategy = require('passport-http-bearer');
+  bodyParser = require('body-parser'),
+  mongoose = require('mongoose'),
+  passport = require('passport'),
+  Strategy = require('passport-http-bearer');
 
 passport.use(new Strategy(
-  function(token, done){
-    User.findOne({ token: token }, function (err, user) {
+  function(token, done) {
+    User.findOne({
+      token: token
+    }, function(err, user) {
       if (err) {
         return done(err);
       }
       if (!user) {
         return done(null, false);
       }
-      return done(null, user, {scope: 'all'});
+      return done(null, user, {
+        scope: 'all'
+      });
     });
   }
 ));
@@ -32,7 +36,7 @@ var port = process.env.PORT || 3000;
 
 app.use(bodyParser.json());
 
-var userRouter = require('./Routes/userRoutes')(User);
+var userRouter = require('./Routes/userRoutes')(User, Update);
 var showRouter = require('./Routes/showRoutes')(Show, Update);
 
 
@@ -46,8 +50,8 @@ app.get('/profile',
     res.json(req.user);
   });
 
-  app.listen(port, function() {
-    console.log('Running on PORT: ' + port);
-  });
+app.listen(port, function() {
+  console.log('Running on PORT: ' + port);
+});
 
-  module.exports = app;
+module.exports = app;
