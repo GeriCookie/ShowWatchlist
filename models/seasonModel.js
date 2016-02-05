@@ -1,8 +1,9 @@
 var mongoose = require('mongoose'),
-    Schema = mongoose.Schema;
+  Schema = mongoose.Schema;
 
 var seasonModel = new Schema({
   seasonNumber: Number,
+  seasonTitle: String,
   episodes: [Schema.Types.Mixed],
   show: Schema.Types.Mixed
 });

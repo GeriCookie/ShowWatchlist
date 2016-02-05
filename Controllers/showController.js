@@ -1,13 +1,11 @@
 require('../polyfills/array');
-var showController = function (Show) {
-  var post = function (req, res) {
-    //auth???
-    var user = req.user;
+var showController = function(Show) {
+  var post = function(req, res) {
     var show = new Show(req.body);
 
     Show.findOne({
       title: show.title
-    }, function (err, dbShow) {
+    }, function(err, dbShow) {
       if (err) {
         throw err;
       }
@@ -17,7 +15,7 @@ var showController = function (Show) {
         });
         return;
       }
-      show.save(function (err, result) {
+      show.save(function(err, result) {
         if (err) {
           throw err;
         }
@@ -27,34 +25,34 @@ var showController = function (Show) {
     });
   };
 
-  var get = function (req, res) {
+  var get = function(req, res) {
 
-    Show.find({}, function (err, shows) {
+    Show.find({}, function(err, shows) {
       if (err) {
-          res.status(500).send(err);
+        res.status(500).send(err);
       } else {
 
         if (req.query.genre) {
           var genre = req.query.genre.toLowerCase();
-          shows = shows.filter(function (show) {
-            return !!(show.genres.find(function (showGenre) {
+          shows = shows.filter(function(show) {
+            return !!(show.genres.find(function(showGenre) {
               return showGenre.toLowerCase() === genre;
             }));
           });
         }
 
-        shows = shows.map(function (show){
-              return {
-                _id: show._id,
-                title: show.title,
-                actors: show.actors,
-                genres: show.genres,
-                description: show.description,
-                imageUrl: show.imageUrl,
-                seasons: show.seasons
-              };
-            });
-            res.json(shows);
+        shows = shows.map(function(show) {
+          return {
+            _id: show._id,
+            title: show.title,
+            actors: show.actors,
+            genres: show.genres,
+            description: show.description,
+            imageUrl: show.imageUrl,
+            seasons: show.seasons
+          };
+        });
+        res.json(shows);
       }
     });
   };

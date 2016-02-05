@@ -22,7 +22,7 @@ passport.use(new Strategy(
   }
 ));
 var db = mongoose.connect('mongodb://localhost/shows');
-
+//var db = mongoose.connect('mongodb://cookie:123456@ds059165.mongolab.com:59165/showapi');
 var User = require('./models/userModel');
 var Show = require('./models/showModel');
 var Season = require('./models/seasonModel');
@@ -37,7 +37,7 @@ var port = process.env.PORT || 3000;
 app.use(bodyParser.json());
 
 var userRouter = require('./Routes/userRoutes')(User, Update);
-var showRouter = require('./Routes/showRoutes')(Show, Update);
+var showRouter = require('./Routes/showRoutes')(Show, Update, Season, Episode, Actor);
 
 
 app.use('/api/users', userRouter);
