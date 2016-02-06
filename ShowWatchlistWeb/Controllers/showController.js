@@ -26,7 +26,8 @@ var showController = function(Show) {
   };
 
   var get = function(req, res) {
-
+    var page = +req.query.page | 1;
+    var size = +req.query.size | 10;
     Show.find({}, function(err, shows) {
       if (err) {
         res.status(500).send(err);
@@ -40,19 +41,20 @@ var showController = function(Show) {
             }));
           });
         }
-
+        shows = shows.slice((page - 1) * size, page * size);
         shows = shows.map(function(show) {
           return {
             _id: show._id,
             title: show.title,
-            actors: show.actors,
             genres: show.genres,
             description: show.description,
             imageUrl: show.imageUrl,
-            seasons: show.seasons
+            communityRating: show.communityRating
           };
         });
-        res.json(shows);
+        res.json({
+          result: shows
+        });
       }
     });
   };
