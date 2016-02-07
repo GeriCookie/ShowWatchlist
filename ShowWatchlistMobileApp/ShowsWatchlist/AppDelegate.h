@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSString *baseUrl;
 
 @property (strong, nonatomic) GCHttpData *httpData;
+@property (strong, nonatomic) NSMutableArray *shows;
 
 @property (readonly, strong, nonatomic) NSManagedObjectContext *managedObjectContext;
 @property (readonly, strong, nonatomic) NSManagedObjectModel *managedObjectModel;

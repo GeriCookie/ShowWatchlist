@@ -45,7 +45,7 @@ var routes = function(Show, Update, Season, Episode, Actor) {
           actors: show.actors,
           genres: show.genres,
           description: show.description,
-          imageUrl: show.imageUrl,
+          imageUrl: show.imgUrl,
           seasons: show.seasons,
           rating: rating,
           comments: show.comments

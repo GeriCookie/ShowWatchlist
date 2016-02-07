@@ -47,8 +47,7 @@ var showController = function(Show) {
             _id: show._id,
             title: show.title,
             genres: show.genres,
-            description: show.description,
-            imageUrl: show.imageUrl,
+            imageUrl: show.imgUrl,
             communityRating: show.communityRating
           };
         });

@@ -7,28 +7,28 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="143" id="JgA-VI-7Bi" customClass="GCShowViewCell">
-            <rect key="frame" x="0.0" y="0.0" width="335" height="143"/>
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="114" id="JgA-VI-7Bi" customClass="GCShowViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="335" height="114"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="JgA-VI-7Bi" id="0z2-yh-eet">
-                <rect key="frame" x="0.0" y="0.0" width="335" height="142"/>
+                <rect key="frame" x="0.0" y="0.0" width="335" height="113"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hby-st-Pfs">
-                        <rect key="frame" x="8" y="6" width="95" height="128"/>
-                    </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaw-im-pNj">
-                        <rect key="frame" x="117" y="22" width="171" height="39"/>
+                        <rect key="frame" x="183" y="28" width="137" height="39"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bi-EU-rrq">
-                        <rect key="frame" x="117" y="75" width="171" height="38"/>
+                        <rect key="frame" x="183" y="75" width="137" height="38"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hby-st-Pfs">
+                        <rect key="frame" x="8" y="8" width="167" height="97"/>
+                    </imageView>
                 </subviews>
                 <color key="backgroundColor" red="0.73884743313670254" green="0.3082750247870083" blue="1" alpha="1" colorSpace="calibratedRGB"/>
             </tableViewCellContentView>
@@ -37,7 +37,7 @@
                 <outlet property="ratingLabel" destination="0bi-EU-rrq" id="x23-wP-xpd"/>
                 <outlet property="titleLabel" destination="jaw-im-pNj" id="cfo-FF-yiR"/>
             </connections>
-            <point key="canvasLocation" x="541.5" y="383.5"/>
+            <point key="canvasLocation" x="541.5" y="369"/>
         </tableViewCell>
     </objects>
 </document>

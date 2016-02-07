@@ -15,7 +15,7 @@
 
 @interface GCExploreViewController()
 
-@property (strong, nonatomic)NSMutableArray *shows;
+
 
 @property (strong, nonatomic)NSString *url;
 
@@ -31,36 +31,10 @@
 
 static NSString *showCell = @"ShowCell";
 
--(void)viewWillAppear:(BOOL)animated {
-    self.shows = [NSMutableArray array];
-    _currentPage = 1;
-    
-    NSString *url = [NSString stringWithFormat:@"%@?page=%ld", self.url, _currentPage];
-    [self.data getFrom:url headers:nil withCompletionHandler:^(NSDictionary *result, NSError *err) {
-        NSArray *showsDicts = [result objectForKey:@"result"];
-        if (err) {
-            NSLog(@"Fuck");
-        }
-        NSLog(@"%@", result);
-        NSMutableArray *shows = [NSMutableArray array];
-        [showsDicts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            [shows addObject:[[GCShowModel alloc] initWithDict:obj]];
-        }];
-        
-        [self.shows addObjectsFromArray: shows];
-        
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [self.tableView reloadData];
-        });
-    }];
-}
-
 -(void)viewDidLoad{
     UINib *nib = [UINib nibWithNibName:@"GCShowViewCell" bundle: nil];
     
     [self.tableView registerNib:nib forCellReuseIdentifier: showCell];
-    
-    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -73,9 +47,10 @@ static NSString *showCell = @"ShowCell";
     
     cell.titleLabel.text = [[self.shows objectAtIndex:indexPath.row] title];
     
-    NSURL *url = [NSURL URLWithString: [[self.shows objectAtIndex: indexPath.row] imgUrl]];
+    NSURL *url = [NSURL URLWithString: [[self.shows objectAtIndex: indexPath.row] imageUrl]];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *img = [UIImage imageWithData:data];
+    
     cell.imgBox.image =  img;
     cell.ratingLabel.text = [NSString stringWithFormat:@"%f", [[self.shows objectAtIndex:indexPath.row] communityRating] ] ;
     
@@ -83,8 +58,12 @@ static NSString *showCell = @"ShowCell";
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 150;
+    return 120;
 }
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+}
+
 -(GCHttpData *)data {
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     return delegate.httpData;
@@ -99,5 +78,16 @@ static NSString *showCell = @"ShowCell";
         _url = [NSString stringWithFormat:@"%@/shows", delegate.baseUrl];
     }
     return _url;
+}
+
+
+-(NSMutableArray *)shows {
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    return delegate.shows;
+}
+
+-(void)setShows:(NSMutableArray *)shows {
+ AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    delegate.shows = [NSMutableArray arrayWithArray:shows];
 }
 @end

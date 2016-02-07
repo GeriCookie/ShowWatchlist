@@ -23,6 +23,7 @@
 		A14701801C638A44006E8CF7 /* ShowsWatchlistUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A147017F1C638A44006E8CF7 /* ShowsWatchlistUITests.m */; };
 		A15392C11C66BECA00D2375C /* GCShowViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15392C01C66BECA00D2375C /* GCShowViewCell.xib */; };
 		A15392C41C66D1D400D2375C /* GCHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15392C31C66D1D400D2375C /* GCHomeScreenViewController.m */; };
+		C62CA952104F39D1EF010976 /* libPods-ShowsWatchlist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B342BA6E6F4AF2276DE6651C /* libPods-ShowsWatchlist.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -43,6 +44,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2EC476DBADE03D871ECC83D5 /* Pods-ShowsWatchlist.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowsWatchlist.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ShowsWatchlist/Pods-ShowsWatchlist.debug.xcconfig"; sourceTree = "<group>"; };
 		A112DF201C6649AB00A06EA1 /* GCHttpData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCHttpData.h; path = HttpData/GCHttpData.h; sourceTree = "<group>"; };
 		A112DF211C6649AB00A06EA1 /* GCHttpData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCHttpData.m; path = HttpData/GCHttpData.m; sourceTree = "<group>"; };
 		A112DF261C664AC400A06EA1 /* GCHttpDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCHttpDataModel.h; path = HttpData/GCHttpDataModel.h; sourceTree = "<group>"; };
@@ -74,6 +76,8 @@
 		A15392C01C66BECA00D2375C /* GCShowViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCShowViewCell.xib; sourceTree = "<group>"; };
 		A15392C21C66D1D400D2375C /* GCHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHomeScreenViewController.h; sourceTree = "<group>"; };
 		A15392C31C66D1D400D2375C /* GCHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHomeScreenViewController.m; sourceTree = "<group>"; };
+		B342BA6E6F4AF2276DE6651C /* libPods-ShowsWatchlist.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShowsWatchlist.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		E5223E32B702017E26CAA5D6 /* Pods-ShowsWatchlist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowsWatchlist.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShowsWatchlist/Pods-ShowsWatchlist.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -81,6 +85,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C62CA952104F39D1EF010976 /* libPods-ShowsWatchlist.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -101,6 +106,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		67CA3C2D47B400721E6866CF /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B342BA6E6F4AF2276DE6651C /* libPods-ShowsWatchlist.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		A112DF231C6649B100A06EA1 /* HttpData */ = {
 			isa = PBXGroup;
 			children = (
@@ -150,6 +163,8 @@
 				A14701731C638A44006E8CF7 /* ShowsWatchlistTests */,
 				A147017E1C638A44006E8CF7 /* ShowsWatchlistUITests */,
 				A14701551C638A44006E8CF7 /* Products */,
+				CCBB9D1EFEAF246D2C576E35 /* Pods */,
+				67CA3C2D47B400721E6866CF /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -210,6 +225,15 @@
 			path = ShowsWatchlistUITests;
 			sourceTree = "<group>";
 		};
+		CCBB9D1EFEAF246D2C576E35 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2EC476DBADE03D871ECC83D5 /* Pods-ShowsWatchlist.debug.xcconfig */,
+				E5223E32B702017E26CAA5D6 /* Pods-ShowsWatchlist.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -217,9 +241,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = A14701841C638A44006E8CF7 /* Build configuration list for PBXNativeTarget "ShowsWatchlist" */;
 			buildPhases = (
+				0FAA608E884E2AB3BF612F1F /* Check Pods Manifest.lock */,
 				A14701501C638A44006E8CF7 /* Sources */,
 				A14701511C638A44006E8CF7 /* Frameworks */,
 				A14701521C638A44006E8CF7 /* Resources */,
+				6FCE0DC8ED3A34A8ECC93F7F /* Embed Pods Frameworks */,
+				30DE843730F39F853799FC9A /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -335,6 +362,54 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		0FAA608E884E2AB3BF612F1F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		30DE843730F39F853799FC9A /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShowsWatchlist/Pods-ShowsWatchlist-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6FCE0DC8ED3A34A8ECC93F7F /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ShowsWatchlist/Pods-ShowsWatchlist-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		A14701501C638A44006E8CF7 /* Sources */ = {
@@ -487,6 +562,7 @@
 		};
 		A14701851C638A44006E8CF7 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2EC476DBADE03D871ECC83D5 /* Pods-ShowsWatchlist.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShowsWatchlist/Info.plist;
@@ -498,6 +574,7 @@
 		};
 		A14701861C638A44006E8CF7 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5223E32B702017E26CAA5D6 /* Pods-ShowsWatchlist.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = ShowsWatchlist/Info.plist;

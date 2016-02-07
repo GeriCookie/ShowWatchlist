@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GCExploreViewController : UITableViewController
-
+@property (strong, nonatomic)NSMutableArray *shows;
 @end

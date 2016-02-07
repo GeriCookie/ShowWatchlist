@@ -12,9 +12,14 @@
 #import "AppDelegate.h"
 #import "GCUserModel.h"
 #import <CoreData/CoreData.h>
+#import "GCHttpData.h"
+#import "GCExploreViewController.h"
+#import "GCShowModel.h"
 
 @interface GCHomeScreenViewController ()
 @property (strong, nonatomic) NSManagedObjectContext *managedContext;
+@property (strong, nonatomic) NSString *url;
+
 @end
 
 @implementation GCHomeScreenViewController
@@ -32,9 +37,31 @@
     
     if (user > 0) {
         UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"TabView"];
-        //        [self showViewController:controller sender:self];
+        //
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-        delegate.window.rootViewController = controller;
+        
+        
+        NSString *url = [NSString stringWithFormat:@"%@?page=%d", self.url, 1];
+        [self.data getFrom:url headers:nil withCompletionHandler:^(NSDictionary *result, NSError *err) {
+            NSArray *showsDicts = [result objectForKey:@"result"];
+            if (err) {
+                NSLog(@"Fuck: %@", err);
+                return;
+            }
+            NSMutableArray *shows = [NSMutableArray array];
+            [showsDicts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                [shows addObject:[[GCShowModel alloc] initWithDict:obj]];
+            }];
+            
+            [delegate.shows addObjectsFromArray: shows];
+            
+            dispatch_async(dispatch_get_main_queue(), ^{
+                [self showViewController:controller sender:self];
+                //delegate.window.rootViewController = controller;
+            });
+        }];
+        
+        
     } else {
         UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LoginView"];
         //        [self showViewController:controller sender:self];
@@ -42,6 +69,10 @@
         delegate.window.rootViewController = controller;
     
     }
+    
+//    self.shows = [NSMutableArray array];
+    
+    
 
 }
 
@@ -60,6 +91,22 @@
     return _managedContext;
 }
 
+-(GCHttpData *)data {
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    return delegate.httpData;
+}
+
+@synthesize url = _url;
+
+-(NSString *) url {
+    if (_url == nil) {
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        
+        _url = [NSString stringWithFormat:@"%@/shows", delegate.baseUrl];
+    }
+    return _url;
+}
+@end
 
 /*
 #pragma mark - Navigation
@@ -71,4 +118,4 @@
 }
 */
 
-@end
+

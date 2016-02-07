@@ -17,8 +17,9 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
-    [NSThread sleepForTimeInterval:5.0];
+    
     self.httpData = [GCHttpData httpData];
+    self.shows = [NSMutableArray array];
     return YES;
 }
 
