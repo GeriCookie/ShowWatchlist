@@ -60,8 +60,12 @@
     if (_token == nil) {
         NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"User"];
         NSError *error;
-        
-        NSManagedObject *user = [[self.managedObjectContext executeFetchRequest:fetchRequest error:&error] objectAtIndex:0];
+
+        NSArray *users = [self.managedObjectContext executeFetchRequest:fetchRequest error:&error];
+        if (!users || users.count==0) {
+            return @"";
+        }
+        NSManagedObject *user = [users firstObject];
         _token = [user valueForKey:@"token"];
         NSLog(@"%@ token", _token);
     }

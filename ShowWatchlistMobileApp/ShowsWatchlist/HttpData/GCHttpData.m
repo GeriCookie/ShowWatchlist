@@ -1,4 +1,4 @@
-//
+		//
 //  GCHttpData.m
 //  ShowsWatchlist
 //
@@ -59,7 +59,7 @@ andCompletionHadler: (void (^)(NSDictionary *, NSError *))completionHandler {
          
          NSError *err;
          
-         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:&err];
+         NSDictionary *dict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments | NSJSONReadingMutableContainers error:&err];
          
          if (err) {
              completionHandler(nil, err);

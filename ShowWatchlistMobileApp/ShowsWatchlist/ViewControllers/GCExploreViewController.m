@@ -28,11 +28,35 @@
 {
     NSInteger _currentPage;
 }
+- (IBAction)showMoreBtn:(id)sender {
+    _currentPage++;
+    NSString *url = [NSString stringWithFormat:@"%@?page=%ld", self.url, (long)_currentPage];
+    //        NSDictionary *header = @{@"Authorization": [NSString stringWithFormat:@"bearer %@",self.token]};
+    [self.data getFrom:url headers:nil withCompletionHandler:^(NSDictionary *result, NSError *err) {
+        NSArray *showsDicts = [result objectForKey:@"result"];
+        if (err) {
+            NSLog(@"Fuck: %@", err);
+            return;
+        }
+        NSMutableArray *shows = [NSMutableArray array];
+        [showsDicts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [shows addObject:[[GCShowModel alloc] initWithDict:obj]];
+        }];
+        
+        [self.shows addObjectsFromArray: shows];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
+    }];
+    
+}
 
 
 static NSString *showCell = @"ShowCell";
 
 -(void)viewDidLoad{
+    _currentPage = 1;
     UINib *nib = [UINib nibWithNibName:@"GCShowViewCell" bundle: nil];
     
     [self.tableView registerNib:nib forCellReuseIdentifier: showCell];
@@ -43,21 +67,34 @@ static NSString *showCell = @"ShowCell";
 }
 
 -(void)addShowToWatchlist : (id)sender{
+    
     UIButton *btn = (UIButton *) sender;
-    UIImage *img = [UIImage imageNamed:@"Watching"];
-    [UIView animateWithDuration:0.5 animations:^{
-        btn.alpha = 0.0;
-    } completion:^(BOOL finished) {
-        btn.enabled = NO;
-        [btn setImage:img forState: UIControlStateDisabled];
-        [btn setImage:img forState: UIControlStateNormal];
-//        btn.alpha = 1.0;
-        [UIView animateWithDuration:1.0 animations:^{
-            btn.alpha = 1.0;
-        } completion:^(BOOL finished) {
-            
-        }];
+    NSString *showId = [[self.shows objectAtIndex:btn.tag] showId];
+    AppDelegate *del = [UIApplication sharedApplication].delegate;
+    NSString *baseURL = del.baseUrl;
+    NSString *url = [NSString stringWithFormat:@"%@/watch/%@",baseURL, showId];
+    [self.data putAt:url withBody:nil headers:nil andCompletionHandler:^(NSDictionary *response, NSError *err) {
+        NSLog(@"%@",response);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIImage *img = [UIImage imageNamed:@"Watching"];
+            [UIView animateWithDuration:0.5 animations:^{
+                btn.alpha = 0.0;
+            } completion:^(BOOL finished) {
+                btn.enabled = NO;
+                [btn setImage:img forState: UIControlStateDisabled];
+                [btn setImage:img forState: UIControlStateNormal];
+                //        btn.alpha = 1.0;
+                [UIView animateWithDuration:1.0 animations:^{
+                    btn.alpha = 1.0;
+                } completion:^(BOOL finished) {
+                    
+                }];
+            }];
+
+        });
+        
     }];
+    
     
 }
 

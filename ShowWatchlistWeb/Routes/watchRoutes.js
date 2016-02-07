@@ -104,6 +104,7 @@ var routes = function(Show, Update, User) {
       if (isShowInUser(user, showId)) {
         removeShowFromUser(user, showId)
           .then(function(show) {
+            console.log('in remove');
             return res.send({
               message: `${show.title} removed from user's watch list`
             });
@@ -114,7 +115,8 @@ var routes = function(Show, Update, User) {
       } else {
         addShowToUser(user, showId)
           .then(function(show) {
-            return res.send({
+            console.log('in add');
+            return res.json({
               message: `${show.title} added to user's watch list`
             });
           }, function(err) {
