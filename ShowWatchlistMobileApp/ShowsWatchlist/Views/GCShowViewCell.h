@@ -8,6 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
+
 @interface GCShowViewCell : UITableViewCell
 
 @property (weak, nonatomic) IBOutlet UIImageView *imgBox;

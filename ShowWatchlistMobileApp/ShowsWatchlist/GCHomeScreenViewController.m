@@ -19,7 +19,7 @@
 @interface GCHomeScreenViewController ()
 @property (strong, nonatomic) NSManagedObjectContext *managedContext;
 @property (strong, nonatomic) NSString *url;
-
+@property (strong, nonatomic) NSString *token;
 @end
 
 @implementation GCHomeScreenViewController
@@ -42,6 +42,7 @@
         
         
         NSString *url = [NSString stringWithFormat:@"%@?page=%d", self.url, 1];
+//        NSDictionary *header = @{@"Authorization": [NSString stringWithFormat:@"bearer %@",self.token]};
         [self.data getFrom:url headers:nil withCompletionHandler:^(NSDictionary *result, NSError *err) {
             NSArray *showsDicts = [result objectForKey:@"result"];
             if (err) {
@@ -105,6 +106,17 @@
         _url = [NSString stringWithFormat:@"%@/shows", delegate.baseUrl];
     }
     return _url;
+}
+
+@synthesize token = _token;
+
+-(NSString *)token {
+    if(_token == nil){
+        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+        
+        _token = delegate.token;
+    }
+    return _token;
 }
 @end
 

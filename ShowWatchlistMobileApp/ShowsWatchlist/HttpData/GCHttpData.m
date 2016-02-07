@@ -7,6 +7,7 @@
 //
 
 #import "GCHttpData.h"
+#import "AppDelegate.h"
 
 @implementation GCHttpData
 
@@ -33,6 +34,13 @@ andCompletionHadler: (void (^)(NSDictionary *, NSError *))completionHandler {
                                                            options:NSJSONWritingPrettyPrinted
                                                              error:nil];
         [request setHTTPBody: bodyData];
+    }
+    
+    AppDelegate *delegate = [UIApplication sharedApplication].delegate;
+    
+    if(delegate.token){
+        NSString *headerValue = [NSString stringWithFormat:@"bearer %@",delegate.token];
+        [request addValue:headerValue forHTTPHeaderField:@"Authorization"];
     }
     
     if (headersDict) {

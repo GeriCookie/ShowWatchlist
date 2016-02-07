@@ -37,7 +37,8 @@
         
         [newUser setValue:[response objectForKey:@"username"] forKey:@"username"];
         [newUser setValue:[response objectForKey:@"token"] forKey:@"token"];
-        
+        NSLog(@"%@",[response objectForKey:@"username"]);
+        NSLog(@"%@",[response objectForKey:@"token"]);
         NSError *error;
         [self.managedContext save:&error];
         if (error) {

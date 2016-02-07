@@ -21,12 +21,6 @@
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bi-EU-rrq">
-                        <rect key="frame" x="183" y="75" width="137" height="38"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hby-st-Pfs">
                         <rect key="frame" x="8" y="8" width="167" height="97"/>
                     </imageView>
@@ -34,6 +28,10 @@
                         <rect key="frame" x="257" y="17" width="70" height="80"/>
                         <state key="normal" image="Add"/>
                     </button>
+                    <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Fjl-kg-lGx" customClass="EDS">
+                        <rect key="frame" x="183" y="81" width="86" height="32"/>
+                        <color key="backgroundColor" red="0.73884743310000001" green="0.30827502480000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                    </view>
                 </subviews>
                 <color key="backgroundColor" red="0.73884743313670254" green="0.3082750247870083" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
@@ -45,7 +43,6 @@
             <connections>
                 <outlet property="btnAdd" destination="4P7-Sy-GeR" id="cnP-yM-qJv"/>
                 <outlet property="imgBox" destination="Hby-st-Pfs" id="7Te-hc-1h0"/>
-                <outlet property="ratingLabel" destination="0bi-EU-rrq" id="x23-wP-xpd"/>
                 <outlet property="titleLabel" destination="jaw-im-pNj" id="cfo-FF-yiR"/>
             </connections>
             <point key="canvasLocation" x="541.5" y="369"/>

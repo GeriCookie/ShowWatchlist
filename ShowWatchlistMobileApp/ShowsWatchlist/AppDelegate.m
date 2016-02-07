@@ -53,6 +53,20 @@
     return @"http://localhost:3000/api";
 }
 
+
+@synthesize token = _token;
+
+-(NSString *)token {
+    if (_token == nil) {
+        NSFetchRequest *fetchRequest = [NSFetchRequest fetchRequestWithEntityName:@"User"];
+        NSError *error;
+        
+        NSManagedObject *user = [[self.managedObjectContext executeFetchRequest:fetchRequest error:&error] objectAtIndex:0];
+        _token = [user valueForKey:@"token"];
+        NSLog(@"%@ token", _token);
+    }
+    return _token;
+}
 #pragma mark - Core Data stack
 
 @synthesize managedObjectContext = _managedObjectContext;
