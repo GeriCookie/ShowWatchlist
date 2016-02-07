@@ -90,7 +90,9 @@ var routes = function(Show, Update, Season, Episode, Actor) {
             comments: show.comments,
             isWatching: isShowInUser(user, show._id)
           };
-          res.send(showDetails);
+          res.send({
+            result: showDetails
+          });
         });
     }
   };
