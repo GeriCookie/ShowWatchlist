@@ -21,6 +21,8 @@
 		A147016A1C638A44006E8CF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A14701681C638A44006E8CF7 /* LaunchScreen.storyboard */; };
 		A14701751C638A44006E8CF7 /* ShowsWatchlistTests.m in Sources */ = {isa = PBXBuildFile; fileRef = A14701741C638A44006E8CF7 /* ShowsWatchlistTests.m */; };
 		A14701801C638A44006E8CF7 /* ShowsWatchlistUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = A147017F1C638A44006E8CF7 /* ShowsWatchlistUITests.m */; };
+		A15392C11C66BECA00D2375C /* GCShowViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A15392C01C66BECA00D2375C /* GCShowViewCell.xib */; };
+		A15392C41C66D1D400D2375C /* GCHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15392C31C66D1D400D2375C /* GCHomeScreenViewController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -69,6 +71,9 @@
 		A147017B1C638A44006E8CF7 /* ShowsWatchlistUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ShowsWatchlistUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		A147017F1C638A44006E8CF7 /* ShowsWatchlistUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ShowsWatchlistUITests.m; sourceTree = "<group>"; };
 		A14701811C638A44006E8CF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A15392C01C66BECA00D2375C /* GCShowViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCShowViewCell.xib; sourceTree = "<group>"; };
+		A15392C21C66D1D400D2375C /* GCHomeScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCHomeScreenViewController.h; sourceTree = "<group>"; };
+		A15392C31C66D1D400D2375C /* GCHomeScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCHomeScreenViewController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -122,6 +127,7 @@
 			children = (
 				A112DF2C1C66A3F900A06EA1 /* GCShowViewCell.h */,
 				A112DF2D1C66A3F900A06EA1 /* GCShowViewCell.m */,
+				A15392C01C66BECA00D2375C /* GCShowViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -131,6 +137,8 @@
 			children = (
 				A112DF2F1C66A45C00A06EA1 /* GCExploreViewController.h */,
 				A112DF301C66A45C00A06EA1 /* GCExploreViewController.m */,
+				A15392C21C66D1D400D2375C /* GCHomeScreenViewController.h */,
+				A15392C31C66D1D400D2375C /* GCHomeScreenViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -306,6 +314,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A147016A1C638A44006E8CF7 /* LaunchScreen.storyboard in Resources */,
+				A15392C11C66BECA00D2375C /* GCShowViewCell.xib in Resources */,
 				A14701671C638A44006E8CF7 /* Assets.xcassets in Resources */,
 				A14701621C638A44006E8CF7 /* Main.storyboard in Resources */,
 			);
@@ -341,6 +350,7 @@
 				A112DF2E1C66A3F900A06EA1 /* GCShowViewCell.m in Sources */,
 				A112DF221C6649AB00A06EA1 /* GCHttpData.m in Sources */,
 				A14701591C638A44006E8CF7 /* main.m in Sources */,
+				A15392C41C66D1D400D2375C /* GCHomeScreenViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

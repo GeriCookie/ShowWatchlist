@@ -45,7 +45,7 @@
             return ;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"SecondView"];
+        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"TabView"];
         [self showViewController:controller sender:self];
         });
     }];
@@ -75,7 +75,7 @@
     [super viewDidLoad];
     
     // Do any additional setup after loading the view, typically from a nib.
-
+/*
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
     
     NSError *err;
@@ -87,7 +87,7 @@
 //        [self showViewController:controller sender:self];
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         delegate.window.rootViewController = controller;
-    }
+    }*/
 }
 
 -(GCHttpData *)data {

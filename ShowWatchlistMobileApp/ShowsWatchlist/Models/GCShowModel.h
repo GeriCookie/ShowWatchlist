@@ -16,20 +16,23 @@
 @property (strong, nonatomic) NSString *showDescription;
 @property (strong, nonatomic) NSString *imgUrl;
 @property (strong, nonatomic) NSString *showId;
+@property CGFloat communityRating;
 
 -(instancetype)initWithTitle: (NSString *) title
                    andGenres: (NSArray *) genres
           andShowDescription: (NSString *) showDescription
                    andImgUrl: (NSString *) imgUrl
-                   andShowId: (NSString *) showId;
+                   andShowId: (NSString *) showId
+          andCommunityRating: (CGFloat) communityRating;
 
 +(GCShowModel *) showWithTitle: (NSString *) title
                    andGenres: (NSArray *) genres
           andShowDescription: (NSString *) showDescription
                    andImgUrl: (NSString *) imgUrl
-                   andShowId: (NSString *) showId;
+                   andShowId: (NSString *) showId
+            andCommunityRating: (CGFloat) communityRating;
 
-@property CGFloat communityRating;
+
 
 
 @end

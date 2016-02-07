@@ -7,6 +7,9 @@
 //
 
 #import "GCShowViewCell.h"
+@interface GCShowViewCell()
+
+@end
 
 @implementation GCShowViewCell
 

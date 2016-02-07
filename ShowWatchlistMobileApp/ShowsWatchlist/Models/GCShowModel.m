@@ -10,7 +10,7 @@
 
 @implementation GCShowModel
 
--(instancetype) initWithTitle:(NSString *)title andGenres:(NSArray *)genres andShowDescription:(NSString *)showDescription andImgUrl:(NSString *)imgUrl andShowId:(NSString *)showId {
+-(instancetype) initWithTitle:(NSString *)title andGenres:(NSArray *)genres andShowDescription:(NSString *)showDescription andImgUrl:(NSString *)imgUrl andShowId:(NSString *)showId andCommunityRating:(CGFloat)communityRating{
     
     if (self = [super init]) {
         self.title = title;
@@ -18,16 +18,17 @@
         self.showDescription = showDescription;
         self.imgUrl = imgUrl;
         self.showId = showId;
+        self.communityRating = communityRating;
     }
     return self;
 }
 
 -(instancetype)initWithDict:(NSDictionary *)dict{
-    return [self initWithTitle:[dict objectForKey:@"title"] andGenres:[dict objectForKey:@"genres"] andShowDescription:[dict objectForKey:@"description"] andImgUrl:[dict objectForKey:@"imgUrl"] andShowId:[dict objectForKey:@"_id"]];
+    return [self initWithTitle:[dict objectForKey:@"title"] andGenres:[dict objectForKey:@"genres"] andShowDescription:[dict objectForKey:@"description"] andImgUrl:[dict objectForKey:@"imgUrl"] andShowId:[dict objectForKey:@"_id"] andCommunityRating: [[dict objectForKey:@"communityRating"] floatValue]];
 }
 
-+(GCShowModel *)showWithTitle:(NSString *)title andGenres:(NSArray *)genres andShowDescription:(NSString *)showDescription andImgUrl:(NSString *)imgUrl andShowId:(NSString *)showId {
-    return [[GCShowModel alloc] initWithTitle:title andGenres:genres andShowDescription:showDescription andImgUrl:imgUrl andShowId:showId];
++(GCShowModel *)showWithTitle:(NSString *)title andGenres:(NSArray *)genres andShowDescription:(NSString *)showDescription andImgUrl:(NSString *)imgUrl andShowId:(NSString *)showId andCommunityRating:(CGFloat)communityRating {
+    return [[GCShowModel alloc] initWithTitle:title andGenres:genres andShowDescription:showDescription andImgUrl:imgUrl andShowId:showId andCommunityRating:communityRating];
 }
 
 
@@ -37,7 +38,8 @@
              @"genres": self.genres,
              @"description": self.showDescription,
              @"imgUrl": self.imgUrl,
-             @"_id": self.showId
+             @"_id": self.showId,
+             @"communityRating": [NSNumber numberWithFloat: self.communityRating]
              };
 }
 @end

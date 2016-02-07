@@ -11,6 +11,7 @@
 #import "GCHttpData.h"
 #import "AppDelegate.h"
 #import "GCShowModel.h"
+#import <UIKit/UIKit.h>
 
 @interface GCExploreViewController()
 
@@ -55,7 +56,9 @@ static NSString *showCell = @"ShowCell";
 }
 
 -(void)viewDidLoad{
-    [self.tableView registerClass: GCShowViewCell.self forCellReuseIdentifier: showCell];
+    UINib *nib = [UINib nibWithNibName:@"GCShowViewCell" bundle: nil];
+    
+    [self.tableView registerNib:nib forCellReuseIdentifier: showCell];
     
     
 }
@@ -67,11 +70,21 @@ static NSString *showCell = @"ShowCell";
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GCShowViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShowCell"];
     
-    cell.textLabel.text = [[self.shows objectAtIndex:indexPath.row] title];
+    
+    cell.titleLabel.text = [[self.shows objectAtIndex:indexPath.row] title];
+    
+    NSURL *url = [NSURL URLWithString: [[self.shows objectAtIndex: indexPath.row] imgUrl]];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img = [UIImage imageWithData:data];
+    cell.imgBox.image =  img;
+    cell.ratingLabel.text = [NSString stringWithFormat:@"%f", [[self.shows objectAtIndex:indexPath.row] communityRating] ] ;
     
     return cell;
 }
 
+-(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    return 150;
+}
 -(GCHttpData *)data {
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     return delegate.httpData;

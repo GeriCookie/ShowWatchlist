@@ -10,4 +10,8 @@
 
 @interface GCShowViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UIImageView *imgBox;
+@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+
 @end
