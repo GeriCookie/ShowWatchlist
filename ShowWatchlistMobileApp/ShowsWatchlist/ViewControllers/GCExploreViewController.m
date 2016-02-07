@@ -12,6 +12,7 @@
 #import "AppDelegate.h"
 #import "GCShowModel.h"
 #import <UIKit/UIKit.h>
+#import "GCShowDetailViewController.h"
 
 @interface GCExploreViewController()
 
@@ -41,6 +42,25 @@ static NSString *showCell = @"ShowCell";
     return self.shows.count;
 }
 
+-(void)addShowToWatchlist : (id)sender{
+    UIButton *btn = (UIButton *) sender;
+    UIImage *img = [UIImage imageNamed:@"Watching"];
+    [UIView animateWithDuration:0.5 animations:^{
+        btn.alpha = 0.0;
+    } completion:^(BOOL finished) {
+        btn.enabled = NO;
+        [btn setImage:img forState: UIControlStateDisabled];
+        [btn setImage:img forState: UIControlStateNormal];
+//        btn.alpha = 1.0;
+        [UIView animateWithDuration:1.0 animations:^{
+            btn.alpha = 1.0;
+        } completion:^(BOOL finished) {
+            
+        }];
+    }];
+    
+}
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     GCShowViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShowCell"];
     
@@ -53,7 +73,8 @@ static NSString *showCell = @"ShowCell";
     
     cell.imgBox.image =  img;
     cell.ratingLabel.text = [NSString stringWithFormat:@"%f", [[self.shows objectAtIndex:indexPath.row] communityRating] ] ;
-    
+    [cell.btnAdd addTarget:self action:@selector(addShowToWatchlist: ) forControlEvents:UIControlEventTouchUpInside];
+    cell.btnAdd.tag = indexPath.row;
     return cell;
 }
 
@@ -62,6 +83,12 @@ static NSString *showCell = @"ShowCell";
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    GCShowDetailViewController *showDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDetailView"];
+    
+    showDetailsVC.showId = [self.shows[indexPath.row] showId];
+    showDetailsVC.showTitle = [self.shows[indexPath.row] title];
+    
+    [self.navigationController pushViewController:showDetailsVC animated:YES];
 }
 
 -(GCHttpData *)data {
@@ -87,7 +114,7 @@ static NSString *showCell = @"ShowCell";
 }
 
 -(void)setShows:(NSMutableArray *)shows {
- AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
     delegate.shows = [NSMutableArray arrayWithArray:shows];
 }
 @end

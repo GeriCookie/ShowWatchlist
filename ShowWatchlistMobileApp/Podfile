@@ -6,4 +6,5 @@
 workspace 'ShowsWatchlist'
 target 'ShowsWatchlist' do
 pod 'SDWebImage/WebP'
+pod 'EDStarRating'
 end

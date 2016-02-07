@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
@@ -17,22 +18,32 @@
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jaw-im-pNj">
                         <rect key="frame" x="183" y="28" width="137" height="39"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0bi-EU-rrq">
                         <rect key="frame" x="183" y="75" width="137" height="38"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Hby-st-Pfs">
                         <rect key="frame" x="8" y="8" width="167" height="97"/>
                     </imageView>
+                    <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4P7-Sy-GeR">
+                        <rect key="frame" x="257" y="17" width="70" height="80"/>
+                        <state key="normal" image="Add"/>
+                    </button>
                 </subviews>
                 <color key="backgroundColor" red="0.73884743313670254" green="0.3082750247870083" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                <constraints>
+                    <constraint firstAttribute="bottomMargin" secondItem="4P7-Sy-GeR" secondAttribute="bottom" constant="8" id="WgC-Be-JlR"/>
+                    <constraint firstItem="4P7-Sy-GeR" firstAttribute="trailing" secondItem="0z2-yh-eet" secondAttribute="trailingMargin" id="XRF-B0-fhy"/>
+                    <constraint firstItem="4P7-Sy-GeR" firstAttribute="top" secondItem="0z2-yh-eet" secondAttribute="topMargin" constant="9" id="pK6-Ny-K4k"/>
+                </constraints>
             </tableViewCellContentView>
             <connections>
+                <outlet property="btnAdd" destination="4P7-Sy-GeR" id="cnP-yM-qJv"/>
                 <outlet property="imgBox" destination="Hby-st-Pfs" id="7Te-hc-1h0"/>
                 <outlet property="ratingLabel" destination="0bi-EU-rrq" id="x23-wP-xpd"/>
                 <outlet property="titleLabel" destination="jaw-im-pNj" id="cfo-FF-yiR"/>
@@ -40,4 +51,7 @@
             <point key="canvasLocation" x="541.5" y="369"/>
         </tableViewCell>
     </objects>
+    <resources>
+        <image name="Add" width="64" height="64"/>
+    </resources>
 </document>
