@@ -15,6 +15,7 @@
 #import <UIKit/UIKit.h>
 
 @interface GCShowDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+@property (weak, nonatomic) IBOutlet UIButton *kopche;
 @property (weak, nonatomic) IBOutlet UILabel *labelTItle;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
@@ -36,6 +37,75 @@
 @end
 
 @implementation GCShowDetailViewController
+- (IBAction)kopchetooo:(id)sender {
+    UIButton *btn = (UIButton *) sender;
+    NSString *showId = self.showDetail.showId;
+    
+    AppDelegate *del = [UIApplication sharedApplication].delegate;
+    NSString *baseURL = del.baseUrl;
+    NSString *url = [NSString stringWithFormat:@"%@/watch/%@",baseURL, showId];
+    NSString *title = self.showDetail.title;
+    [self.data putAt:url withBody:nil headers:nil andCompletionHandler:^(NSDictionary *response, NSError *err) {
+        NSLog(@"%@",response);
+        dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *msg = [response objectForKey:@"message"];
+            BOOL isWatchingCurrShow = self.showDetail.isWatching;
+            if ([msg containsString:@"removed"]) {
+                isWatchingCurrShow = NO;
+            } else {
+                isWatchingCurrShow = YES;
+            }
+            
+            UIImage *img = [UIImage imageNamed:@"Watching"];
+            UIImage *add = [UIImage imageNamed:@"Add"];
+            UIImage *sad = [UIImage imageNamed:@"Sad"];
+            if (!isWatchingCurrShow) {
+                [UIView animateWithDuration:0.5 animations:^{
+                    btn.alpha = 0.0;
+                } completion:^(BOOL finished) {
+                    [btn setImage:sad forState: UIControlStateNormal];
+                    //        btn.alpha = 1.0;
+                    [UIView animateWithDuration:0.5 animations:^{
+                        btn.alpha = 1.0;
+                    } completion:^(BOOL finished) {
+                        [UIView animateWithDuration:0.5 animations:^{
+                            btn.alpha = 0.0;
+                        } completion:^(BOOL finished) {
+                            [btn setImage:add forState: UIControlStateNormal];
+                            //        btn.alpha = 1.0;
+                            [UIView animateWithDuration:0.5 animations:^{
+                                btn.alpha = 1.0;
+                            } completion:^(BOOL finished) {
+                                
+                                [[[[iToast makeText: [NSString stringWithFormat :@"%@ removed from watchlist :(", title]]
+                                   setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
+                            }];
+                        }];
+                    }];
+                }];
+            } else {
+                [UIView animateWithDuration:0.5 animations:^{
+                    btn.alpha = 0.0;
+                } completion:^(BOOL finished) {
+                    [btn setImage:img forState: UIControlStateNormal];
+                    //        btn.alpha = 0.5;
+                    [UIView animateWithDuration:0.5 animations:^{
+                        btn.alpha = 1.0;
+                    } completion:^(BOOL finished) {
+                        [[[[iToast makeText: [NSString stringWithFormat :@"%@ added to watchlist ;)", title]]
+                           setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
+                    }];
+                }];
+            }
+            
+            
+        });
+        
+    }];
+    
+
+
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -58,86 +128,36 @@
          
          self.imageView.image =  img;
          
+         UIImage *img2 = [UIImage imageNamed:@"Watching"];
+         UIImage *img3 = [UIImage imageNamed:@"Add"];
+
          self.overviewTextVIew.text = self.showDetail.showDescription;
+         if (self.showDetail.isWatching) {
+             [self.kopche setImage:img2 forState: UIControlStateDisabled];
+             [self.kopche setImage:img2 forState: UIControlStateNormal];
+             
+         } else {
+             
+             [self.kopche setImage:img3 forState: UIControlStateDisabled];
+             [self.kopche setImage:img3 forState: UIControlStateNormal];
+             
+             
+         }
+
          [self.overviewTextVIew layoutIfNeeded];
          [self.seasonsTV reloadData];
          
      });
     }];
 }
-/*
+
 -(void)addSeasonToWatched : (id)sender{
-    
-    UIButton *btn = (UIButton *) sender;
-    NSString *showId = [[self.showDetail.seasons objectAtIndex:btn.tag] objectForKey:@"seasonId"];//??????????
-    
-    AppDelegate *del = [UIApplication sharedApplication].delegate;
-    NSString *baseURL = del.baseUrl;
-    NSString *url = [NSString stringWithFormat:@"%@/watch/%@",baseURL, showId];
-    NSString *title = [[self.showDetail.seasons objectAtIndex:btn.tag] objectForKey:@"seasonTitle"];
-    [self.data putAt:url withBody:nil headers:nil andCompletionHandler:^(NSDictionary *response, NSError *err) {
-        NSLog(@"%@",response);
-        dispatch_async(dispatch_get_main_queue(), ^{
-            NSString *msg = [response objectForKey:@"message"];
-            BOOL isWatchingCurrShow = [[self.shows objectAtIndex:btn.tag] isWatching];
-            if ([msg containsString:@"removed"]) {
-                isWatchingCurrShow = NO;
-            } else {
-                isWatchingCurrShow = YES;
-            }
-            
-            UIImage *img = [UIImage imageNamed:@"Watching"];
-            UIImage *add = [UIImage imageNamed:@"Add"];
-            UIImage *sad = [UIImage imageNamed:@"Sad"];
-            if (!isWatchingCurrShow) {
-                [UIView animateWithDuration:0.5 animations:^{
-                    btn.alpha = 0.0;
-                } completion:^(BOOL finished) {
-                    [btn setImage:sad forState: UIControlStateNormal];
-                    //        btn.alpha = 1.0;
-                    [UIView animateWithDuration:1.0 animations:^{
-                        btn.alpha = 1.0;
-                    } completion:^(BOOL finished) {
-                        [UIView animateWithDuration:0.5 animations:^{
-                            btn.alpha = 0.0;
-                        } completion:^(BOOL finished) {
-                            [btn setImage:add forState: UIControlStateNormal];
-                            //        btn.alpha = 1.0;
-                            [UIView animateWithDuration:1.0 animations:^{
-                                btn.alpha = 1.0;
-                            } completion:^(BOOL finished) {
-                                
-                                [[[[iToast makeText: [NSString stringWithFormat :@"%@ removed from watchlist :(", title]]
-                                   setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
-                            }];
-                        }];
-                    }];
-                }];
-            } else {
-                [UIView animateWithDuration:0.5 animations:^{
-                    btn.alpha = 0.0;
-                } completion:^(BOOL finished) {
-                    [btn setImage:img forState: UIControlStateNormal];
-                    //        btn.alpha = 1.0;
-                    [UIView animateWithDuration:1.0 animations:^{
-                        btn.alpha = 1.0;
-                    } completion:^(BOOL finished) {
-                        [[[[iToast makeText: [NSString stringWithFormat :@"%@ added to watchlist ;)", title]]
-                           setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
-                    }];
-                }];
-            }
-            
-            
-        });
-        
-    }];
     
     
 }
 
 
-*/
+
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     GCSeasonViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeasonShowCell"];
     

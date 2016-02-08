@@ -97,7 +97,7 @@ static NSString *showCell = @"ShowCell";
                 } completion:^(BOOL finished) {
                     [btn setImage:sad forState: UIControlStateNormal];
                     //        btn.alpha = 1.0;
-                    [UIView animateWithDuration:1.0 animations:^{
+                    [UIView animateWithDuration:0.5 animations:^{
                         btn.alpha = 1.0;
                     } completion:^(BOOL finished) {
                         [UIView animateWithDuration:0.5 animations:^{
@@ -105,7 +105,7 @@ static NSString *showCell = @"ShowCell";
                         } completion:^(BOOL finished) {
                             [btn setImage:add forState: UIControlStateNormal];
                             //        btn.alpha = 1.0;
-                            [UIView animateWithDuration:1.0 animations:^{
+                            [UIView animateWithDuration:0.5 animations:^{
                                 btn.alpha = 1.0;
                             } completion:^(BOOL finished) {
                                 
@@ -121,7 +121,7 @@ static NSString *showCell = @"ShowCell";
                 } completion:^(BOOL finished) {
                     [btn setImage:img forState: UIControlStateNormal];
                     //        btn.alpha = 1.0;
-                    [UIView animateWithDuration:1.0 animations:^{
+                    [UIView animateWithDuration:0.5 animations:^{
                         btn.alpha = 1.0;
                     } completion:^(BOOL finished) {
                         [[[[iToast makeText: [NSString stringWithFormat :@"%@ added to watchlist ;)", title]]

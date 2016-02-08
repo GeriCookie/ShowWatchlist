@@ -150,7 +150,7 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Cf0-6r-uwu">
-                                <rect key="frame" x="0.0" y="28" width="600" height="44"/>
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Cf0-6r-uwu" id="ukh-aP-hMK">
                                     <rect key="frame" x="0.0" y="0.0" width="600" height="43"/>
@@ -285,13 +285,6 @@
                                     <rect key="frame" x="32" y="278" width="348" height="93"/>
                                 </variation>
                             </textView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqF-hl-BuC">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="Add"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="294" y="182" width="64" height="64"/>
-                                </variation>
-                            </button>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WhR-6r-t0O">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JeR-CX-SEk">
@@ -324,6 +317,16 @@
                                     <rect key="frame" x="32" y="246" width="355" height="31"/>
                                 </variation>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqF-hl-BuC">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Add"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="297" y="184" width="64" height="64"/>
+                                </variation>
+                                <connections>
+                                    <action selector="kopchetooo:" destination="q58-iE-WUO" eventType="touchUpInside" id="3Pn-rk-3KR"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.73884743310000001" green="0.30827502480000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
@@ -334,9 +337,9 @@
                                 <exclude reference="s63-Oq-IZM"/>
                                 <exclude reference="PSX-Ia-upb"/>
                                 <exclude reference="p8J-yF-edo"/>
-                                <exclude reference="eqF-hl-BuC"/>
                                 <exclude reference="WhR-6r-t0O"/>
                                 <exclude reference="9by-oC-hNJ"/>
+                                <exclude reference="eqF-hl-BuC"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
@@ -347,9 +350,9 @@
                                 <include reference="s63-Oq-IZM"/>
                                 <include reference="PSX-Ia-upb"/>
                                 <include reference="p8J-yF-edo"/>
-                                <include reference="eqF-hl-BuC"/>
                                 <include reference="WhR-6r-t0O"/>
                                 <include reference="9by-oC-hNJ"/>
+                                <include reference="eqF-hl-BuC"/>
                             </mask>
                         </variation>
                     </view>
@@ -360,6 +363,7 @@
                         <outlet property="communityRatingLabel" destination="s63-Oq-IZM" id="FCr-63-oBi"/>
                         <outlet property="genresLabel" destination="Q97-TV-P1n" id="1Y4-TZ-3DT"/>
                         <outlet property="imageView" destination="UBd-R4-EaP" id="GJO-PT-P5N"/>
+                        <outlet property="kopche" destination="eqF-hl-BuC" id="vEK-Kr-iqF"/>
                         <outlet property="labelTItle" destination="oeZ-L5-MI9" id="Org-ot-oYz"/>
                         <outlet property="overviewLabel" destination="9by-oC-hNJ" id="e7R-gH-z88"/>
                         <outlet property="overviewTextVIew" destination="p8J-yF-edo" id="ff9-jU-L4o"/>

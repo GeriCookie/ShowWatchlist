@@ -12,7 +12,7 @@
 
 @implementation GCShowDetailModel
 
--(instancetype)initWithTitle:(NSString *)title andGenres:(NSArray *)genres andShowDescription:(NSString *)showDescription andimageUrl:(NSString *)imageUrl andShowId:(NSString *)showId andCommunityRating:(CGFloat)communityRating andRating:(NSNumber *)rating andActors:(NSArray *)actors andSeasons:(NSArray *)seasons andComments:(NSArray *)comments {
+-(instancetype)initWithTitle:(NSString *)title andGenres:(NSArray *)genres andShowDescription:(NSString *)showDescription andimageUrl:(NSString *)imageUrl andShowId:(NSString *)showId andCommunityRating:(CGFloat)communityRating andRating:(NSNumber *)rating andActors:(NSArray *)actors andSeasons:(NSArray *)seasons andComments:(NSArray *)comments andIsWatiching:(BOOL)isWatchng{
 
     if(self = [super init]){
         self.title = title;
@@ -25,16 +25,17 @@
         self.actors = actors;
         self.seasons = seasons;
         self.comments = comments;
+        self.isWatching = isWatchng;
     }
     return self;
 }
 
 -(instancetype)initWithDict:(NSDictionary *)dict{
-    return [self initWithTitle:[dict objectForKey:@"title"] andGenres:[dict objectForKey:@"genres"] andShowDescription:[dict objectForKey:@"description"] andimageUrl:[dict objectForKey:@"imageUrl"] andShowId:[dict objectForKey:@"_id"] andCommunityRating:[[dict objectForKey:@"communityRating"] floatValue] andRating:[dict objectForKey:@"rating"] andActors:[dict objectForKey:@"actors"] andSeasons:[dict objectForKey:@"seasons"] andComments:[dict objectForKey:@"comments"]];
+    return [self initWithTitle:[dict objectForKey:@"title"] andGenres:[dict objectForKey:@"genres"] andShowDescription:[dict objectForKey:@"description"] andimageUrl:[dict objectForKey:@"imageUrl"] andShowId:[dict objectForKey:@"_id"] andCommunityRating:[[dict objectForKey:@"communityRating"] floatValue] andRating:[dict objectForKey:@"rating"] andActors:[dict objectForKey:@"actors"] andSeasons:[dict objectForKey:@"seasons"] andComments:[dict objectForKey:@"comments"] andIsWatiching:[[dict objectForKey:@"isWatching"] boolValue]];
 }
 
-+(GCShowDetailModel *)showWithTitle:(NSString *)title andGenres:(NSArray *)genres andShowDescription:(NSString *)showDescription andimageUrl:(NSString *)imageUrl andShowId:(NSString *)showId andCommunityRating:(CGFloat)communityRating andRating:(NSNumber *)rating andActors:(NSArray *)actors andSeasons:(NSArray *)seasons andComments:(NSArray *)comments {
-    return [[GCShowDetailModel alloc] initWithTitle:title andGenres:genres andShowDescription:showDescription andimageUrl:imageUrl andShowId:showId andCommunityRating:communityRating andRating:rating andActors:actors andSeasons:seasons andComments:comments];
++(GCShowDetailModel *)showWithTitle:(NSString *)title andGenres:(NSArray *)genres andShowDescription:(NSString *)showDescription andimageUrl:(NSString *)imageUrl andShowId:(NSString *)showId andCommunityRating:(CGFloat)communityRating andRating:(NSNumber *)rating andActors:(NSArray *)actors andSeasons:(NSArray *)seasons andComments:(NSArray *)comments andIsWatiching:(BOOL)isWatchng{
+    return [[GCShowDetailModel alloc] initWithTitle:title andGenres:genres andShowDescription:showDescription andimageUrl:imageUrl andShowId:showId andCommunityRating:communityRating andRating:rating andActors:actors andSeasons:seasons andComments:comments andIsWatiching:isWatchng];
 }
 
 
@@ -49,7 +50,7 @@
              @"rating": self.rating,
              @"actors": self.actors,
              @"seasons": self.seasons,
-             @"comments": self.comments
+             @"comments": self.comments,@"isWatching": [NSNumber numberWithBool:self.isWatching]
              };
 }
 @end

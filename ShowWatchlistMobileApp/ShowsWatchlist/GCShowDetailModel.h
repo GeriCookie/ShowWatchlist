@@ -21,6 +21,7 @@
 @property (strong, nonatomic) NSArray *actors;
 @property (strong, nonatomic) NSArray *seasons;
 @property (strong, nonatomic) NSArray *comments;
+@property BOOL isWatching;
 
 -(instancetype)initWithTitle: (NSString *) title
                    andGenres: (NSArray *) genres
@@ -31,17 +32,19 @@
                    andRating: (NSNumber *) rating
                    andActors: (NSArray *) actors
                   andSeasons: (NSArray *) seasons
-                 andComments: (NSArray *) comments;
+                 andComments: (NSArray *) comments
+              andIsWatiching: (BOOL)isWatchng;
 
 
 +(GCShowDetailModel *) showWithTitle: (NSString *) title
-                     andGenres: (NSArray *) genres
-            andShowDescription: (NSString *) showDescription
-                   andimageUrl: (NSString *) imageUrl
-                     andShowId: (NSString *) showId
-            andCommunityRating: (CGFloat) communityRating
-                     andRating: (NSNumber *) rating
-                     andActors: (NSArray *) actors
-                    andSeasons: (NSArray *) seasons
-                   andComments: (NSArray *) comments;
+                           andGenres: (NSArray *) genres
+                  andShowDescription: (NSString *) showDescription
+                         andimageUrl: (NSString *) imageUrl
+                           andShowId: (NSString *) showId
+                  andCommunityRating: (CGFloat) communityRating
+                           andRating: (NSNumber *) rating
+                           andActors: (NSArray *) actors
+                          andSeasons: (NSArray *) seasons
+                         andComments: (NSArray *) comments
+                      andIsWatiching: (BOOL)isWatchng;
 @end
