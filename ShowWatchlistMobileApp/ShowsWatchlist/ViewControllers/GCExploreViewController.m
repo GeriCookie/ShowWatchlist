@@ -56,10 +56,11 @@
 static NSString *showCell = @"ShowCell";
 
 -(void)viewDidLoad{
-    _currentPage = 1;
+    _currentPage = 2;
     UINib *nib = [UINib nibWithNibName:@"GCShowViewCell" bundle: nil];
     
     [self.tableView registerNib:nib forCellReuseIdentifier: showCell];
+    
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
@@ -70,27 +71,61 @@ static NSString *showCell = @"ShowCell";
     
     UIButton *btn = (UIButton *) sender;
     NSString *showId = [[self.shows objectAtIndex:btn.tag] showId];
+    
     AppDelegate *del = [UIApplication sharedApplication].delegate;
     NSString *baseURL = del.baseUrl;
     NSString *url = [NSString stringWithFormat:@"%@/watch/%@",baseURL, showId];
     [self.data putAt:url withBody:nil headers:nil andCompletionHandler:^(NSDictionary *response, NSError *err) {
         NSLog(@"%@",response);
         dispatch_async(dispatch_get_main_queue(), ^{
+            NSString *msg = [response objectForKey:@"message"];
+            BOOL isWatchingCurrShow = [[self.shows objectAtIndex:btn.tag] isWatching];
+            if ([msg containsString:@"removed"]) {
+                isWatchingCurrShow = NO;
+            } else {
+                isWatchingCurrShow = YES;
+            }
+            
             UIImage *img = [UIImage imageNamed:@"Watching"];
-            [UIView animateWithDuration:0.5 animations:^{
-                btn.alpha = 0.0;
-            } completion:^(BOOL finished) {
-                btn.enabled = NO;
-                [btn setImage:img forState: UIControlStateDisabled];
-                [btn setImage:img forState: UIControlStateNormal];
-                //        btn.alpha = 1.0;
-                [UIView animateWithDuration:1.0 animations:^{
-                    btn.alpha = 1.0;
+            UIImage *add = [UIImage imageNamed:@"Add"];
+            UIImage *sad = [UIImage imageNamed:@"Sad"];
+            if (!isWatchingCurrShow) {
+                [UIView animateWithDuration:0.5 animations:^{
+                    btn.alpha = 0.0;
                 } completion:^(BOOL finished) {
-                    
+                    [btn setImage:sad forState: UIControlStateNormal];
+                    //        btn.alpha = 1.0;
+                    [UIView animateWithDuration:1.0 animations:^{
+                        btn.alpha = 1.0;
+                    } completion:^(BOOL finished) {
+                        [UIView animateWithDuration:0.5 animations:^{
+                            btn.alpha = 0.0;
+                        } completion:^(BOOL finished) {
+                            [btn setImage:add forState: UIControlStateNormal];
+                            //        btn.alpha = 1.0;
+                            [UIView animateWithDuration:1.0 animations:^{
+                                btn.alpha = 1.0;
+                            } completion:^(BOOL finished) {
+                                
+                            }];
+                        }];
+                    }];
                 }];
-            }];
-
+            } else {
+                [UIView animateWithDuration:0.5 animations:^{
+                    btn.alpha = 0.0;
+                } completion:^(BOOL finished) {
+                    [btn setImage:img forState: UIControlStateNormal];
+                    //        btn.alpha = 1.0;
+                    [UIView animateWithDuration:1.0 animations:^{
+                        btn.alpha = 1.0;
+                    } completion:^(BOOL finished) {
+                        
+                    }];
+                }];
+            }
+            
+            
         });
         
     }];
@@ -109,15 +144,38 @@ static NSString *showCell = @"ShowCell";
     UIImage *img = [UIImage imageWithData:data];
     
     cell.imgBox.image =  img;
-    cell.ratingLabel.text = [NSString stringWithFormat:@"%f", [[self.shows objectAtIndex:indexPath.row] communityRating] ] ;
-    [cell.btnAdd addTarget:self action:@selector(addShowToWatchlist: ) forControlEvents:UIControlEventTouchUpInside];
-    cell.btnAdd.tag = indexPath.row;
+    cell.ratingLabel.text = [NSString stringWithFormat:@"%f", [[self.shows objectAtIndex:indexPath.row] communityRating]];
+    BOOL isWatching = [[self.shows objectAtIndex:indexPath.row] isWatching];
+    NSLog(@"%d",isWatching);
+    UIImage *img2 = [UIImage imageNamed:@"Watching"];
+    UIImage *img3 = [UIImage imageNamed:@"Add"];
+    if (isWatching) {
+        
+        [cell.btnAdd setImage:img2 forState: UIControlStateDisabled];
+        [cell.btnAdd setImage:img2 forState: UIControlStateNormal];
+        [cell.btnAdd addTarget:self action:@selector(addShowToWatchlist: ) forControlEvents:UIControlEventTouchUpInside];
+        cell.btnAdd.tag = indexPath.row;
+    } else {
+        
+        [cell.btnAdd setImage:img3 forState: UIControlStateDisabled];
+        [cell.btnAdd setImage:img3 forState: UIControlStateNormal];
+        [cell.btnAdd addTarget:self action:@selector(addShowToWatchlist: ) forControlEvents:UIControlEventTouchUpInside];
+        cell.btnAdd.tag = indexPath.row;
+    }
+    
+    
     return cell;
+}
+
+- (void)cellWasSwiped:(UIGestureRecognizer *)g {
+    NSLog(@"Swiped");
 }
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 120;
 }
+
+
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     GCShowDetailViewController *showDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDetailView"];
@@ -126,6 +184,13 @@ static NSString *showCell = @"ShowCell";
     showDetailsVC.showTitle = [self.shows[indexPath.row] title];
     
     [self.navigationController pushViewController:showDetailsVC animated:YES];
+}
+
+-(void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (indexPath.row == self.shows.count - 1) {
+        [self showMoreBtn:nil];
+    }
+    
 }
 
 -(GCHttpData *)data {

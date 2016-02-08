@@ -25,6 +25,9 @@
 		A15392C41C66D1D400D2375C /* GCHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15392C31C66D1D400D2375C /* GCHomeScreenViewController.m */; };
 		A167799A1C67878D00F850FB /* GCShowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16779991C67878D00F850FB /* GCShowDetailViewController.m */; };
 		A167799D1C67904400F850FB /* GCShowDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A167799C1C67904400F850FB /* GCShowDetailModel.m */; };
+		A19C78B11C681B8B00203652 /* GCWatchlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A19C78B01C681B8B00203652 /* GCWatchlistViewController.m */; };
+		A19C78B41C6829CF00203652 /* GCWatchViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A19C78B31C6829CF00203652 /* GCWatchViewCell.m */; };
+		A19C78B61C6829F800203652 /* GCWatchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C78B51C6829F800203652 /* GCWatchViewCell.xib */; };
 		C62CA952104F39D1EF010976 /* libPods-ShowsWatchlist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B342BA6E6F4AF2276DE6651C /* libPods-ShowsWatchlist.a */; };
 /* End PBXBuildFile section */
 
@@ -82,6 +85,11 @@
 		A16779991C67878D00F850FB /* GCShowDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCShowDetailViewController.m; sourceTree = "<group>"; };
 		A167799B1C67904400F850FB /* GCShowDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCShowDetailModel.h; sourceTree = "<group>"; };
 		A167799C1C67904400F850FB /* GCShowDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCShowDetailModel.m; sourceTree = "<group>"; };
+		A19C78AF1C681B8B00203652 /* GCWatchlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCWatchlistViewController.h; path = ViewControllers/GCWatchlistViewController.h; sourceTree = "<group>"; };
+		A19C78B01C681B8B00203652 /* GCWatchlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCWatchlistViewController.m; path = ViewControllers/GCWatchlistViewController.m; sourceTree = "<group>"; };
+		A19C78B21C6829CF00203652 /* GCWatchViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCWatchViewCell.h; path = Views/GCWatchViewCell.h; sourceTree = "<group>"; };
+		A19C78B31C6829CF00203652 /* GCWatchViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCWatchViewCell.m; path = Views/GCWatchViewCell.m; sourceTree = "<group>"; };
+		A19C78B51C6829F800203652 /* GCWatchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCWatchViewCell.xib; sourceTree = "<group>"; };
 		B342BA6E6F4AF2276DE6651C /* libPods-ShowsWatchlist.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShowsWatchlist.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5223E32B702017E26CAA5D6 /* Pods-ShowsWatchlist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowsWatchlist.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShowsWatchlist/Pods-ShowsWatchlist.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -149,6 +157,9 @@
 				A112DF2C1C66A3F900A06EA1 /* GCShowViewCell.h */,
 				A112DF2D1C66A3F900A06EA1 /* GCShowViewCell.m */,
 				A15392C01C66BECA00D2375C /* GCShowViewCell.xib */,
+				A19C78B21C6829CF00203652 /* GCWatchViewCell.h */,
+				A19C78B31C6829CF00203652 /* GCWatchViewCell.m */,
+				A19C78B51C6829F800203652 /* GCWatchViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -162,6 +173,8 @@
 				A15392C31C66D1D400D2375C /* GCHomeScreenViewController.m */,
 				A16779981C67878D00F850FB /* GCShowDetailViewController.h */,
 				A16779991C67878D00F850FB /* GCShowDetailViewController.m */,
+				A19C78AF1C681B8B00203652 /* GCWatchlistViewController.h */,
+				A19C78B01C681B8B00203652 /* GCWatchlistViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -353,6 +366,7 @@
 				A147016A1C638A44006E8CF7 /* LaunchScreen.storyboard in Resources */,
 				A15392C11C66BECA00D2375C /* GCShowViewCell.xib in Resources */,
 				A14701671C638A44006E8CF7 /* Assets.xcassets in Resources */,
+				A19C78B61C6829F800203652 /* GCWatchViewCell.xib in Resources */,
 				A14701621C638A44006E8CF7 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -433,8 +447,10 @@
 				A14701651C638A44006E8CF7 /* ShowsWatchlist.xcdatamodeld in Sources */,
 				A167799D1C67904400F850FB /* GCShowDetailModel.m in Sources */,
 				A112DF311C66A45C00A06EA1 /* GCExploreViewController.m in Sources */,
+				A19C78B11C681B8B00203652 /* GCWatchlistViewController.m in Sources */,
 				A112DF2E1C66A3F900A06EA1 /* GCShowViewCell.m in Sources */,
 				A112DF221C6649AB00A06EA1 /* GCHttpData.m in Sources */,
+				A19C78B41C6829CF00203652 /* GCWatchViewCell.m in Sources */,
 				A14701591C638A44006E8CF7 /* main.m in Sources */,
 				A15392C41C66D1D400D2375C /* GCHomeScreenViewController.m in Sources */,
 				A167799A1C67878D00F850FB /* GCShowDetailViewController.m in Sources */,

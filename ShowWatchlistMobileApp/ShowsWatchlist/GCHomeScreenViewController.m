@@ -42,7 +42,6 @@
         
         
         NSString *url = [NSString stringWithFormat:@"%@?page=%d", self.url, 1];
-//        NSDictionary *header = @{@"Authorization": [NSString stringWithFormat:@"bearer %@",self.token]};
         [self.data getFrom:url headers:nil withCompletionHandler:^(NSDictionary *result, NSError *err) {
             NSArray *showsDicts = [result objectForKey:@"result"];
             if (err) {
@@ -58,7 +57,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 [self showViewController:controller sender:self];
-                //delegate.window.rootViewController = controller;
+
             });
         }];
         
