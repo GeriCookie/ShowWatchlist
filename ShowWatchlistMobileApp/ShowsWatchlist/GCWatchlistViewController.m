@@ -1,33 +1,21 @@
 //
-//  GCShowDetailViewController.m
+//  GCWatchlistViewController.m
 //  ShowsWatchlist
 //
-//  Created by Geri Cookie on 2/7/16.
+//  Created by Geri Cookie on 2/8/16.
 //  Copyright © 2016 Geri Cookie. All rights reserved.
 //
 
-#import "GCShowDetailViewController.h"
+#import "GCWatchlistViewController.h"
+#import "GCWatchViewCell.h"
 #import "GCHttpData.h"
 #import "AppDelegate.h"
-#import "GCShowDetailModel.h"
-#import "GCSeasonViewCell.h"
-#import "iToast.h"
+#import "GCShowModel.h"
 #import <UIKit/UIKit.h>
+#import "GCShowDetailViewController.h"
+#import "iToast.h"
 
-@interface GCShowDetailViewController () <UITableViewDelegate, UITableViewDataSource>
-@property (weak, nonatomic) IBOutlet UILabel *labelTItle;
-@property (weak, nonatomic) IBOutlet UIImageView *imageView;
-@property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UILabel *titleLabel;
-@property (weak, nonatomic) IBOutlet UILabel *overviewLabel;
-@property (weak, nonatomic) IBOutlet UILabel *actorsLabel;
-@property (weak, nonatomic) IBOutlet UITextView *overviewTextVIew;
-@property (weak, nonatomic) IBOutlet UITableView *seasonsTV;
-@property (weak, nonatomic) IBOutlet UILabel *yourRatingLabel;
-@property (weak, nonatomic) IBOutlet UILabel *genresLabel;
-@property (weak, nonatomic) IBOutlet UILabel *communityRatingLabel;
-
-@property (weak, nonatomic) IBOutlet UILabel *commentsLabel;
+@interface GCWatchlistViewController ()
 
 @property (strong, nonatomic)NSString *url;
 
@@ -35,46 +23,66 @@
 
 @end
 
-@implementation GCShowDetailViewController
+@implementation GCWatchlistViewController
+
+static NSString *showCell = @"WatchCell";
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.labelTItle.text = self.showTitle;
-    self.seasonsTV.dataSource = self;
-    self.seasonsTV.delegate = self;
     
-    UINib *nib = [UINib nibWithNibName:@"GCSeasonViewCell" bundle: nil];
+    UINib *nib = [UINib nibWithNibName:@"GCWatchViewCell" bundle: nil];
     
-    [self.seasonsTV registerNib:nib forCellReuseIdentifier: @"SeasonShowCell"];
+    [self.tableView registerNib:nib forCellReuseIdentifier: showCell];
+    NSString *url = [NSString stringWithFormat:@"%@", self.url];
     
-    NSString *url = [NSString stringWithFormat:@"%@/%@", self.url, self.showId];
     [self.data getFrom:url headers:nil withCompletionHandler:^(NSDictionary *result, NSError *err) {
-        NSLog(@"%@",result);
-   self.showDetail = [[GCShowDetailModel alloc] initWithDict: [result objectForKey:@"result"]];
-     dispatch_async(dispatch_get_main_queue(), ^{
-         NSURL *url = [NSURL URLWithString: self.showDetail.imageUrl];
-         NSData *data = [NSData dataWithContentsOfURL:url];
-         UIImage *img = [UIImage imageWithData:data];
-         
-         self.imageView.image =  img;
-         
-         self.overviewTextVIew.text = self.showDetail.showDescription;
-         [self.overviewTextVIew layoutIfNeeded];
-         [self.seasonsTV reloadData];
-         
-     });
+        NSArray *showsDicts = [result objectForKey:@"result"];
+        if (err) {
+            NSLog(@"Fuck: %@", err);
+            return;
+        }
+        NSMutableArray *shows = [NSMutableArray array];
+        [showsDicts enumerateObjectsUsingBlock:^(id  _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            [shows addObject:[[GCShowModel alloc] initWithDict:obj]];
+        }];
+        
+        [self.shows addObjectsFromArray: shows];
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [self.tableView reloadData];
+        });
     }];
+
+
 }
-/*
--(void)addSeasonToWatched : (id)sender{
+
+- (void)didReceiveMemoryWarning {
+    [super didReceiveMemoryWarning];
+    // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - Table view data source
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+
+    return self.shows.count;
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+
+    return self.shows.count;
+}
+
+-(void)addShowToWatchlist : (id)sender{
     
     UIButton *btn = (UIButton *) sender;
-    NSString *showId = [[self.showDetail.seasons objectAtIndex:btn.tag] objectForKey:@"seasonId"];//??????????
+    NSString *showId = [[self.shows objectAtIndex:btn.tag] showId];
     
     AppDelegate *del = [UIApplication sharedApplication].delegate;
     NSString *baseURL = del.baseUrl;
     NSString *url = [NSString stringWithFormat:@"%@/watch/%@",baseURL, showId];
-    NSString *title = [[self.showDetail.seasons objectAtIndex:btn.tag] objectForKey:@"seasonTitle"];
+    NSString *title = [[self.shows objectAtIndex:btn.tag] title];
     [self.data putAt:url withBody:nil headers:nil andCompletionHandler:^(NSDictionary *response, NSError *err) {
         NSLog(@"%@",response);
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -109,6 +117,8 @@
                                 
                                 [[[[iToast makeText: [NSString stringWithFormat :@"%@ removed from watchlist :(", title]]
                                    setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
+                                [self.shows removeObjectAtIndex:btn.tag];
+                                [self.tableView reloadData];
                             }];
                         }];
                     }];
@@ -136,38 +146,46 @@
     
 }
 
-
-*/
--(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    GCSeasonViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeasonShowCell"];
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    GCWatchViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WatchCell"];
     
-    cell.seasonName.text = [[self.showDetail.seasons objectAtIndex:indexPath.row] objectForKey:@"title"];
-    BOOL isWatched = [[self.showDetail.seasons objectAtIndex:indexPath.row] objectForKey:@"isWatched"];
-    NSLog(@"%d",isWatched);
+    
+    cell.title.text = [[self.shows objectAtIndex:indexPath.row] title];
+    
+    NSURL *url = [NSURL URLWithString: [[self.shows objectAtIndex: indexPath.row] imageUrl]];
+    NSData *data = [NSData dataWithContentsOfURL:url];
+    UIImage *img = [UIImage imageWithData:data];
+    
+    cell.imageView.image =  img;
+    
+    
     UIImage *img2 = [UIImage imageNamed:@"Watching"];
-    UIImage *img3 = [UIImage imageNamed:@"Add"];
-    if (isWatched) {
+    
         
-        [cell.addButton setImage:img2 forState: UIControlStateDisabled];
-        [cell.addButton setImage:img2 forState: UIControlStateNormal];
-        [cell.addButton addTarget:self action:@selector(addSeasonToWatched: ) forControlEvents:UIControlEventTouchUpInside];
-        cell.addButton.tag = indexPath.row;
-    } else {
-        
-        [cell.addButton setImage:img3 forState: UIControlStateDisabled];
-        [cell.addButton setImage:img3 forState: UIControlStateNormal];
-        [cell.addButton addTarget:self action:@selector(addSeasonToWatched: ) forControlEvents:UIControlEventTouchUpInside];
-        cell.addButton.tag = indexPath.row;
-    }
+        [cell.button setImage:img2 forState: UIControlStateDisabled];
+        [cell.button setImage:img2 forState: UIControlStateNormal];
+        [cell.button addTarget:self action:@selector(addShowToWatchlist: ) forControlEvents:UIControlEventTouchUpInside];
+        cell.button.tag = indexPath.row;
+    
+    
+    
     return cell;
 }
 
--(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.showDetail.seasons.count;
-}
+
+
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 70;
+    return 120;
+}
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    GCShowDetailViewController *showDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDetailView"];
+    
+    showDetailsVC.showId = [self.shows[indexPath.row] showId];
+    showDetailsVC.showTitle = [self.shows[indexPath.row] title];
+    
+    [self.navigationController pushViewController:showDetailsVC animated:YES];
 }
 
 -(GCHttpData *)data {
@@ -181,10 +199,20 @@
     if (_url == nil) {
         AppDelegate *delegate = [UIApplication sharedApplication].delegate;
         
-        _url = [NSString stringWithFormat:@"%@/shows", delegate.baseUrl];
+        _url = [NSString stringWithFormat:@"%@/watch", delegate.baseUrl];
     }
     return _url;
 }
 
 
+-(NSMutableArray *)shows {
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    return delegate.shows;
+}
+
+
+-(void)setShows:(NSMutableArray *)shows {
+    AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
+    delegate.shows = [NSMutableArray arrayWithArray:shows];
+}
 @end

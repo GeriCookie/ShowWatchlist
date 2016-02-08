@@ -6,8 +6,8 @@
 //  Copyright © 2016 Geri Cookie. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import <UIKit/UIKit.h>
 
-@interface GCWatchlistViewController : NSObject
-
+@interface GCWatchlistViewController : UITableViewController
+@property (strong, nonatomic)NSMutableArray *shows;
 @end

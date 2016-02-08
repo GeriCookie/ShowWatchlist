@@ -1,13 +1,13 @@
 //
-//  GCWatchViewCell.h
+//  GCActorsViewCell.m
 //  ShowsWatchlist
 //
 //  Created by Geri Cookie on 2/8/16.
 //  Copyright © 2016 Geri Cookie. All rights reserved.
 //
 
-#import <Foundation/Foundation.h>
+#import "GCActorsViewCell.h"
 
-@interface GCWatchViewCell : NSObject
+@implementation GCActorsViewCell
 
 @end

@@ -19,6 +19,7 @@
 @property BOOL isWatching;
 @property CGFloat communityRating;
 
+
 -(instancetype)initWithTitle: (NSString *) title
                    andGenres: (NSArray *) genres
           andShowDescription: (NSString *) showDescription

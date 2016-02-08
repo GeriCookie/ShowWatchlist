@@ -13,6 +13,7 @@
 #import "GCShowModel.h"
 #import <UIKit/UIKit.h>
 #import "GCShowDetailViewController.h"
+#import "iToast.h"
 
 @interface GCExploreViewController()
 
@@ -75,6 +76,7 @@ static NSString *showCell = @"ShowCell";
     AppDelegate *del = [UIApplication sharedApplication].delegate;
     NSString *baseURL = del.baseUrl;
     NSString *url = [NSString stringWithFormat:@"%@/watch/%@",baseURL, showId];
+    NSString *title = [[self.shows objectAtIndex:btn.tag] title];
     [self.data putAt:url withBody:nil headers:nil andCompletionHandler:^(NSDictionary *response, NSError *err) {
         NSLog(@"%@",response);
         dispatch_async(dispatch_get_main_queue(), ^{
@@ -107,6 +109,8 @@ static NSString *showCell = @"ShowCell";
                                 btn.alpha = 1.0;
                             } completion:^(BOOL finished) {
                                 
+                                [[[[iToast makeText: [NSString stringWithFormat :@"%@ removed from watchlist :(", title]]
+                                   setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
                             }];
                         }];
                     }];
@@ -120,7 +124,8 @@ static NSString *showCell = @"ShowCell";
                     [UIView animateWithDuration:1.0 animations:^{
                         btn.alpha = 1.0;
                     } completion:^(BOOL finished) {
-                        
+                        [[[[iToast makeText: [NSString stringWithFormat :@"%@ added to watchlist ;)", title]]
+                           setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
                     }];
                 }];
             }
@@ -167,9 +172,6 @@ static NSString *showCell = @"ShowCell";
     return cell;
 }
 
-- (void)cellWasSwiped:(UIGestureRecognizer *)g {
-    NSLog(@"Swiped");
-}
 
 -(CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 120;

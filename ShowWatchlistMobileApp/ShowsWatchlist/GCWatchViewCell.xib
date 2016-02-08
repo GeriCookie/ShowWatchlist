@@ -8,26 +8,26 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="Wdp-yK-F3x" customClass="GCShowViewCell">
+        <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="115" id="Wdp-yK-F3x" customClass="GCWatchViewCell">
             <rect key="frame" x="0.0" y="0.0" width="335" height="115"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wdp-yK-F3x" id="j6N-j6-OyV">
                 <rect key="frame" x="0.0" y="0.0" width="335" height="114"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOW-Xa-WXI">
-                        <rect key="frame" x="8" y="8" width="167" height="97"/>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hOW-Xa-WXI">
+                        <rect key="frame" x="8" y="9" width="167" height="97"/>
                     </imageView>
                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="RyZ-fk-P2n">
                         <rect key="frame" x="257" y="17" width="70" height="80"/>
                         <state key="normal" image="Watching"/>
                     </button>
                     <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Cfg-3v-Tc1" customClass="EDS">
-                        <rect key="frame" x="183" y="81" width="86" height="32"/>
+                        <rect key="frame" x="183" y="82" width="86" height="32"/>
                         <color key="backgroundColor" red="0.73884743310000001" green="0.30827502480000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ri-e4-0dR">
-                        <rect key="frame" x="183" y="28" width="137" height="39"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Ri-e4-0dR">
+                        <rect key="frame" x="175" y="35" width="137" height="39"/>
                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                         <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
@@ -35,12 +35,24 @@
                 </subviews>
                 <color key="backgroundColor" red="0.73884743310000001" green="0.30827502480000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                 <constraints>
+                    <constraint firstItem="hOW-Xa-WXI" firstAttribute="leading" secondItem="j6N-j6-OyV" secondAttribute="leadingMargin" id="4XM-sl-ojm"/>
+                    <constraint firstItem="hOW-Xa-WXI" firstAttribute="bottom" secondItem="j6N-j6-OyV" secondAttribute="bottomMargin" id="6Mg-4a-uxU"/>
+                    <constraint firstItem="RyZ-fk-P2n" firstAttribute="top" secondItem="j6N-j6-OyV" secondAttribute="topMargin" constant="9" id="Hf8-KY-ht6"/>
                     <constraint firstAttribute="bottomMargin" secondItem="RyZ-fk-P2n" secondAttribute="bottom" constant="8" id="LPm-Gu-YpH"/>
+                    <constraint firstItem="RyZ-fk-P2n" firstAttribute="trailing" secondItem="j6N-j6-OyV" secondAttribute="trailingMargin" id="TPY-pP-plA"/>
                     <constraint firstItem="RyZ-fk-P2n" firstAttribute="top" secondItem="j6N-j6-OyV" secondAttribute="topMargin" constant="9" id="Wb6-9B-V57"/>
                     <constraint firstItem="RyZ-fk-P2n" firstAttribute="trailing" secondItem="j6N-j6-OyV" secondAttribute="trailingMargin" id="Xds-pl-jXI"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="RyZ-fk-P2n" secondAttribute="bottom" constant="9" id="feg-wZ-ojB"/>
+                    <constraint firstItem="4Ri-e4-0dR" firstAttribute="leading" secondItem="hOW-Xa-WXI" secondAttribute="trailing" id="fgH-QJ-rwe"/>
+                    <constraint firstItem="hOW-Xa-WXI" firstAttribute="top" secondItem="j6N-j6-OyV" secondAttribute="topMargin" constant="1" id="xa6-hH-S7V"/>
                 </constraints>
             </tableViewCellContentView>
-            <point key="canvasLocation" x="321.5" y="303.5"/>
+            <connections>
+                <outlet property="button" destination="RyZ-fk-P2n" id="w61-fJ-TlH"/>
+                <outlet property="imageView" destination="hOW-Xa-WXI" id="ux3-tM-bTn"/>
+                <outlet property="title" destination="4Ri-e4-0dR" id="2n9-cJ-Vd7"/>
+            </connections>
+            <point key="canvasLocation" x="433.5" y="284.5"/>
         </tableViewCell>
     </objects>
     <resources>

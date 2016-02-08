@@ -25,9 +25,14 @@
 		A15392C41C66D1D400D2375C /* GCHomeScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A15392C31C66D1D400D2375C /* GCHomeScreenViewController.m */; };
 		A167799A1C67878D00F850FB /* GCShowDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A16779991C67878D00F850FB /* GCShowDetailViewController.m */; };
 		A167799D1C67904400F850FB /* GCShowDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = A167799C1C67904400F850FB /* GCShowDetailModel.m */; };
-		A19C78B11C681B8B00203652 /* GCWatchlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A19C78B01C681B8B00203652 /* GCWatchlistViewController.m */; };
-		A19C78B41C6829CF00203652 /* GCWatchViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A19C78B31C6829CF00203652 /* GCWatchViewCell.m */; };
 		A19C78B61C6829F800203652 /* GCWatchViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C78B51C6829F800203652 /* GCWatchViewCell.xib */; };
+		A19C78BD1C6836D600203652 /* iToast.m in Sources */ = {isa = PBXBuildFile; fileRef = A19C78BC1C6836D600203652 /* iToast.m */; };
+		A19C78C01C683B5F00203652 /* GCWatchViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A19C78BF1C683B5F00203652 /* GCWatchViewCell.m */; };
+		A19C78C31C683E3C00203652 /* GCWatchlistViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = A19C78C21C683E3C00203652 /* GCWatchlistViewController.m */; };
+		A19C78C81C684D7300203652 /* GCActorsViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C78C71C684D7300203652 /* GCActorsViewCell.xib */; };
+		A19C78CE1C684E8A00203652 /* GCActorsViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A19C78CD1C684E8A00203652 /* GCActorsViewCell.m */; };
+		A19C78D21C684F4000203652 /* GCSeasonViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = A19C78D01C684F4000203652 /* GCSeasonViewCell.m */; };
+		A19C78D31C684F4000203652 /* GCSeasonViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = A19C78D11C684F4000203652 /* GCSeasonViewCell.xib */; };
 		C62CA952104F39D1EF010976 /* libPods-ShowsWatchlist.a in Frameworks */ = {isa = PBXBuildFile; fileRef = B342BA6E6F4AF2276DE6651C /* libPods-ShowsWatchlist.a */; };
 /* End PBXBuildFile section */
 
@@ -85,11 +90,19 @@
 		A16779991C67878D00F850FB /* GCShowDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCShowDetailViewController.m; sourceTree = "<group>"; };
 		A167799B1C67904400F850FB /* GCShowDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCShowDetailModel.h; sourceTree = "<group>"; };
 		A167799C1C67904400F850FB /* GCShowDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCShowDetailModel.m; sourceTree = "<group>"; };
-		A19C78AF1C681B8B00203652 /* GCWatchlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCWatchlistViewController.h; path = ViewControllers/GCWatchlistViewController.h; sourceTree = "<group>"; };
-		A19C78B01C681B8B00203652 /* GCWatchlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCWatchlistViewController.m; path = ViewControllers/GCWatchlistViewController.m; sourceTree = "<group>"; };
-		A19C78B21C6829CF00203652 /* GCWatchViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCWatchViewCell.h; path = Views/GCWatchViewCell.h; sourceTree = "<group>"; };
-		A19C78B31C6829CF00203652 /* GCWatchViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCWatchViewCell.m; path = Views/GCWatchViewCell.m; sourceTree = "<group>"; };
 		A19C78B51C6829F800203652 /* GCWatchViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCWatchViewCell.xib; sourceTree = "<group>"; };
+		A19C78BB1C6836D600203652 /* iToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iToast.h; sourceTree = "<group>"; };
+		A19C78BC1C6836D600203652 /* iToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iToast.m; sourceTree = "<group>"; };
+		A19C78BE1C683B5F00203652 /* GCWatchViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCWatchViewCell.h; sourceTree = "<group>"; };
+		A19C78BF1C683B5F00203652 /* GCWatchViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCWatchViewCell.m; sourceTree = "<group>"; };
+		A19C78C11C683E3C00203652 /* GCWatchlistViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCWatchlistViewController.h; sourceTree = "<group>"; };
+		A19C78C21C683E3C00203652 /* GCWatchlistViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCWatchlistViewController.m; sourceTree = "<group>"; };
+		A19C78C71C684D7300203652 /* GCActorsViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = GCActorsViewCell.xib; sourceTree = "<group>"; };
+		A19C78CC1C684E8A00203652 /* GCActorsViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GCActorsViewCell.h; sourceTree = "<group>"; };
+		A19C78CD1C684E8A00203652 /* GCActorsViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GCActorsViewCell.m; sourceTree = "<group>"; };
+		A19C78CF1C684F4000203652 /* GCSeasonViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = GCSeasonViewCell.h; path = Views/GCSeasonViewCell.h; sourceTree = "<group>"; };
+		A19C78D01C684F4000203652 /* GCSeasonViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = GCSeasonViewCell.m; path = Views/GCSeasonViewCell.m; sourceTree = "<group>"; };
+		A19C78D11C684F4000203652 /* GCSeasonViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = GCSeasonViewCell.xib; path = Views/GCSeasonViewCell.xib; sourceTree = "<group>"; };
 		B342BA6E6F4AF2276DE6651C /* libPods-ShowsWatchlist.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ShowsWatchlist.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5223E32B702017E26CAA5D6 /* Pods-ShowsWatchlist.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ShowsWatchlist.release.xcconfig"; path = "Pods/Target Support Files/Pods-ShowsWatchlist/Pods-ShowsWatchlist.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -157,9 +170,15 @@
 				A112DF2C1C66A3F900A06EA1 /* GCShowViewCell.h */,
 				A112DF2D1C66A3F900A06EA1 /* GCShowViewCell.m */,
 				A15392C01C66BECA00D2375C /* GCShowViewCell.xib */,
-				A19C78B21C6829CF00203652 /* GCWatchViewCell.h */,
-				A19C78B31C6829CF00203652 /* GCWatchViewCell.m */,
 				A19C78B51C6829F800203652 /* GCWatchViewCell.xib */,
+				A19C78BE1C683B5F00203652 /* GCWatchViewCell.h */,
+				A19C78BF1C683B5F00203652 /* GCWatchViewCell.m */,
+				A19C78C71C684D7300203652 /* GCActorsViewCell.xib */,
+				A19C78CC1C684E8A00203652 /* GCActorsViewCell.h */,
+				A19C78CD1C684E8A00203652 /* GCActorsViewCell.m */,
+				A19C78CF1C684F4000203652 /* GCSeasonViewCell.h */,
+				A19C78D01C684F4000203652 /* GCSeasonViewCell.m */,
+				A19C78D11C684F4000203652 /* GCSeasonViewCell.xib */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -173,8 +192,8 @@
 				A15392C31C66D1D400D2375C /* GCHomeScreenViewController.m */,
 				A16779981C67878D00F850FB /* GCShowDetailViewController.h */,
 				A16779991C67878D00F850FB /* GCShowDetailViewController.m */,
-				A19C78AF1C681B8B00203652 /* GCWatchlistViewController.h */,
-				A19C78B01C681B8B00203652 /* GCWatchlistViewController.m */,
+				A19C78C11C683E3C00203652 /* GCWatchlistViewController.h */,
+				A19C78C21C683E3C00203652 /* GCWatchlistViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
@@ -204,6 +223,7 @@
 		A14701561C638A44006E8CF7 /* ShowsWatchlist */ = {
 			isa = PBXGroup;
 			children = (
+				A19C78B71C68361400203652 /* Libs */,
 				A112DF321C66A46300A06EA1 /* ViewControllers */,
 				A112DF2B1C66A39700A06EA1 /* Views */,
 				A112DF2A1C6655E500A06EA1 /* Models */,
@@ -246,6 +266,15 @@
 				A14701811C638A44006E8CF7 /* Info.plist */,
 			);
 			path = ShowsWatchlistUITests;
+			sourceTree = "<group>";
+		};
+		A19C78B71C68361400203652 /* Libs */ = {
+			isa = PBXGroup;
+			children = (
+				A19C78BB1C6836D600203652 /* iToast.h */,
+				A19C78BC1C6836D600203652 /* iToast.m */,
+			);
+			name = Libs;
 			sourceTree = "<group>";
 		};
 		CCBB9D1EFEAF246D2C576E35 /* Pods */ = {
@@ -363,6 +392,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A19C78C81C684D7300203652 /* GCActorsViewCell.xib in Resources */,
+				A19C78D31C684F4000203652 /* GCSeasonViewCell.xib in Resources */,
 				A147016A1C638A44006E8CF7 /* LaunchScreen.storyboard in Resources */,
 				A15392C11C66BECA00D2375C /* GCShowViewCell.xib in Resources */,
 				A14701671C638A44006E8CF7 /* Assets.xcassets in Resources */,
@@ -443,17 +474,20 @@
 				A112DF351C66A92000A06EA1 /* GCShowModel.m in Sources */,
 				A147015F1C638A44006E8CF7 /* ViewController.m in Sources */,
 				A147015C1C638A44006E8CF7 /* AppDelegate.m in Sources */,
+				A19C78BD1C6836D600203652 /* iToast.m in Sources */,
 				A112DF291C6655DB00A06EA1 /* GCUserModel.m in Sources */,
 				A14701651C638A44006E8CF7 /* ShowsWatchlist.xcdatamodeld in Sources */,
 				A167799D1C67904400F850FB /* GCShowDetailModel.m in Sources */,
 				A112DF311C66A45C00A06EA1 /* GCExploreViewController.m in Sources */,
-				A19C78B11C681B8B00203652 /* GCWatchlistViewController.m in Sources */,
 				A112DF2E1C66A3F900A06EA1 /* GCShowViewCell.m in Sources */,
+				A19C78C01C683B5F00203652 /* GCWatchViewCell.m in Sources */,
 				A112DF221C6649AB00A06EA1 /* GCHttpData.m in Sources */,
-				A19C78B41C6829CF00203652 /* GCWatchViewCell.m in Sources */,
 				A14701591C638A44006E8CF7 /* main.m in Sources */,
 				A15392C41C66D1D400D2375C /* GCHomeScreenViewController.m in Sources */,
 				A167799A1C67878D00F850FB /* GCShowDetailViewController.m in Sources */,
+				A19C78CE1C684E8A00203652 /* GCActorsViewCell.m in Sources */,
+				A19C78C31C683E3C00203652 /* GCWatchlistViewController.m in Sources */,
+				A19C78D21C684F4000203652 /* GCSeasonViewCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

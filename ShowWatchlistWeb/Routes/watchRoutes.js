@@ -13,6 +13,7 @@ let convertToShowToWatch = function(show) {
   let userShow = {
     _id: show._id,
     title: show.title,
+    imageUrl: show.imgUrl,
     seasons: show.seasons.map(season => {
       let episodes = season.episodes.map(episode => {
         return {
