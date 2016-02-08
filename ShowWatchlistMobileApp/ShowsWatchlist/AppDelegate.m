@@ -20,6 +20,7 @@
     
     self.httpData = [GCHttpData httpData];
     self.shows = [NSMutableArray array];
+    self.watchingShows = [NSMutableArray array];
     return YES;
 }
 

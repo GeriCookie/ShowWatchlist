@@ -107,7 +107,7 @@
         <!--Home Screen View Controller-->
         <scene sceneID="ZPu-B7-cPn">
             <objects>
-                <viewController id="4cK-zk-QlR" customClass="GCHomeScreenViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoadingScreen" id="4cK-zk-QlR" customClass="GCHomeScreenViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="Em2-qO-AhF"/>
                         <viewControllerLayoutGuide type="bottom" id="6eb-tm-ejh"/>
@@ -224,7 +224,7 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="32" y="191" width="166" height="57"/>
+                                    <rect key="frame" x="20" y="190" width="247" height="47"/>
                                 </variation>
                             </label>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UBd-R4-EaP">
@@ -237,43 +237,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
                                 <color key="backgroundColor" red="0.73884743310000001" green="0.30827502480000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="26" y="369" width="348" height="156"/>
+                                    <rect key="frame" x="20" y="385" width="354" height="97"/>
                                 </variation>
                             </tableView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Genres" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q97-TV-P1n">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="41" y="533" width="55" height="21"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Comments" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iMX-me-lSz">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="32" y="759" width="84" height="21"/>
-                                </variation>
-                            </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Community rating" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="s63-Oq-IZM">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="41" y="567" width="137" height="21"/>
-                                </variation>
-                            </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Actors" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PSX-Ia-upb">
                                 <rect key="frame" x="-42" y="-21" width="42" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="41" y="601" width="50" height="21"/>
+                                    <rect key="frame" x="20" y="502" width="50" height="21"/>
                                 </variation>
                             </label>
                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="p8J-yF-edo">
@@ -282,11 +255,31 @@
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="32" y="278" width="348" height="93"/>
+                                    <rect key="frame" x="20" y="284" width="348" height="93"/>
                                 </variation>
                             </textView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqF-hl-BuC">
+                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
+                                <state key="normal" image="Add"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="301" y="182" width="64" height="64"/>
+                                </variation>
+                                <connections>
+                                    <action selector="kopchetooo:" destination="q58-iE-WUO" eventType="touchUpInside" id="3Pn-rk-3KR"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9by-oC-hNJ">
+                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
+                                    <rect key="frame" x="20" y="245" width="355" height="31"/>
+                                </variation>
+                            </label>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="WhR-6r-t0O">
                                 <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                                <color key="backgroundColor" red="0.73884743310000001" green="0.30827502480000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="JeR-CX-SEk">
                                     <size key="itemSize" width="65" height="79"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -305,63 +298,35 @@
                                     </collectionViewCell>
                                 </cells>
                                 <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="33" y="630" width="335" height="104"/>
+                                    <rect key="frame" x="20" y="538" width="354" height="102"/>
                                 </variation>
                             </collectionView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Overview" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9by-oC-hNJ">
-                                <rect key="frame" x="-42" y="-21" width="42" height="21"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <nil key="highlightedColor"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="32" y="246" width="355" height="31"/>
-                                </variation>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eqF-hl-BuC">
-                                <rect key="frame" x="-23" y="-15" width="46" height="30"/>
-                                <state key="normal" image="Add"/>
-                                <variation key="heightClass=regular-widthClass=compact" fixedFrame="YES">
-                                    <rect key="frame" x="297" y="184" width="64" height="64"/>
-                                </variation>
-                                <connections>
-                                    <action selector="kopchetooo:" destination="q58-iE-WUO" eventType="touchUpInside" id="3Pn-rk-3KR"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.73884743310000001" green="0.30827502480000002" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <variation key="default">
                             <mask key="subviews">
                                 <exclude reference="mXZ-dS-3bw"/>
-                                <exclude reference="Q97-TV-P1n"/>
-                                <exclude reference="iMX-me-lSz"/>
-                                <exclude reference="s63-Oq-IZM"/>
                                 <exclude reference="PSX-Ia-upb"/>
                                 <exclude reference="p8J-yF-edo"/>
-                                <exclude reference="WhR-6r-t0O"/>
-                                <exclude reference="9by-oC-hNJ"/>
                                 <exclude reference="eqF-hl-BuC"/>
+                                <exclude reference="9by-oC-hNJ"/>
+                                <exclude reference="WhR-6r-t0O"/>
                             </mask>
                         </variation>
                         <variation key="heightClass=regular-widthClass=compact">
                             <mask key="subviews">
                                 <include reference="mXZ-dS-3bw"/>
-                                <include reference="Q97-TV-P1n"/>
-                                <include reference="iMX-me-lSz"/>
-                                <include reference="s63-Oq-IZM"/>
                                 <include reference="PSX-Ia-upb"/>
                                 <include reference="p8J-yF-edo"/>
-                                <include reference="WhR-6r-t0O"/>
-                                <include reference="9by-oC-hNJ"/>
                                 <include reference="eqF-hl-BuC"/>
+                                <include reference="9by-oC-hNJ"/>
+                                <include reference="WhR-6r-t0O"/>
                             </mask>
                         </variation>
                     </view>
                     <connections>
                         <outlet property="actorsLabel" destination="PSX-Ia-upb" id="jWM-wl-VjG"/>
                         <outlet property="collectionView" destination="WhR-6r-t0O" id="Dd2-It-acn"/>
-                        <outlet property="commentsLabel" destination="iMX-me-lSz" id="0Kb-ur-tAv"/>
-                        <outlet property="communityRatingLabel" destination="s63-Oq-IZM" id="FCr-63-oBi"/>
-                        <outlet property="genresLabel" destination="Q97-TV-P1n" id="1Y4-TZ-3DT"/>
                         <outlet property="imageView" destination="UBd-R4-EaP" id="GJO-PT-P5N"/>
                         <outlet property="kopche" destination="eqF-hl-BuC" id="vEK-Kr-iqF"/>
                         <outlet property="labelTItle" destination="oeZ-L5-MI9" id="Org-ot-oYz"/>

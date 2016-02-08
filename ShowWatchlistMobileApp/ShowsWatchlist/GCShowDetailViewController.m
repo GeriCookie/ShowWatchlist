@@ -13,8 +13,9 @@
 #import "GCSeasonViewCell.h"
 #import "iToast.h"
 #import <UIKit/UIKit.h>
+#import "GCActorsViewCell.h"
 
-@interface GCShowDetailViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface GCShowDetailViewController () <UITableViewDelegate, UITableViewDataSource, UICollectionViewDataSource, UICollectionViewDelegate>
 @property (weak, nonatomic) IBOutlet UIButton *kopche;
 @property (weak, nonatomic) IBOutlet UILabel *labelTItle;
 @property (weak, nonatomic) IBOutlet UIImageView *imageView;
@@ -98,7 +99,6 @@
                 }];
             }
             
-            
         });
         
     }];
@@ -109,14 +109,19 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.barTintColor = [UIColor yellowColor];
+    
     self.labelTItle.text = self.showTitle;
     self.seasonsTV.dataSource = self;
     self.seasonsTV.delegate = self;
+    self.collectionView.dataSource = self;
+    self.collectionView.delegate = self;
     
     UINib *nib = [UINib nibWithNibName:@"GCSeasonViewCell" bundle: nil];
+    UINib *nib2 = [UINib nibWithNibName:@"GCActorsViewCell" bundle:nil];
     
     [self.seasonsTV registerNib:nib forCellReuseIdentifier: @"SeasonShowCell"];
-    
+    [self.collectionView registerNib:nib2 forCellWithReuseIdentifier:@"ActorShowCell"];
     NSString *url = [NSString stringWithFormat:@"%@/%@", self.url, self.showId];
     [self.data getFrom:url headers:nil withCompletionHandler:^(NSDictionary *result, NSError *err) {
         NSLog(@"%@",result);
@@ -145,8 +150,10 @@
          }
 
          [self.overviewTextVIew layoutIfNeeded];
+         //[self.collectionView reloadData];
          [self.seasonsTV reloadData];
-         
+       
+
      });
     }];
 }
@@ -162,24 +169,43 @@
     GCSeasonViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"SeasonShowCell"];
     
     cell.seasonName.text = [[self.showDetail.seasons objectAtIndex:indexPath.row] objectForKey:@"title"];
-    BOOL isWatched = [[self.showDetail.seasons objectAtIndex:indexPath.row] objectForKey:@"isWatched"];
+    /*BOOL isWatched = [[self.showDetail.seasons objectAtIndex:indexPath.row] objectForKey:@"isWatched"];
     NSLog(@"%d",isWatched);
-    UIImage *img2 = [UIImage imageNamed:@"Watching"];
-    UIImage *img3 = [UIImage imageNamed:@"Add"];
+    UIImage *img2 = [UIImage imageNamed:@"WatchingSmall"];
+    UIImage *img3 = [UIImage imageNamed:@"AddSmall"];
     if (isWatched) {
         
-        [cell.addButton setImage:img2 forState: UIControlStateDisabled];
+        
         [cell.addButton setImage:img2 forState: UIControlStateNormal];
-        [cell.addButton addTarget:self action:@selector(addSeasonToWatched: ) forControlEvents:UIControlEventTouchUpInside];
+        //[cell.addButton addTarget:self action:@selector(addSeasonToWatched: ) forControlEvents:UIControlEventTouchUpInside];
         cell.addButton.tag = indexPath.row;
     } else {
         
-        [cell.addButton setImage:img3 forState: UIControlStateDisabled];
+        //[cell.addButton setImage:img3 forState: UIControlStateDisabled];
         [cell.addButton setImage:img3 forState: UIControlStateNormal];
-        [cell.addButton addTarget:self action:@selector(addSeasonToWatched: ) forControlEvents:UIControlEventTouchUpInside];
+        //[cell.addButton addTarget:self action:@selector(addSeasonToWatched: ) forControlEvents:UIControlEventTouchUpInside];
         cell.addButton.tag = indexPath.row;
-    }
+    }*/
     return cell;
+}
+
+-(NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
+    return self.showDetail.actors.count;
+}
+
+-(UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath {
+
+    GCActorsViewCell *actorCell =[collectionView dequeueReusableCellWithReuseIdentifier:@"ActorShowCell" forIndexPath:indexPath];
+    NSLog(@"%@", [self.showDetail.actors objectAtIndex: indexPath.row]);
+   
+    NSURL *url2 = [NSURL URLWithString: [[self.showDetail.actors objectAtIndex: indexPath.row] objectForKey:@"img"]];
+    NSData *data = [NSData dataWithContentsOfURL:url2];
+    UIImage *img = [UIImage imageWithData:data];
+    
+    //[actorCell.actorImage setImage:img];
+    actorCell.actorImage.image = img;
+
+    return actorCell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
@@ -194,6 +220,8 @@
     AppDelegate *delegate = [UIApplication sharedApplication].delegate;
     return delegate.httpData;
 }
+
+
 
 @synthesize url = _url;
 

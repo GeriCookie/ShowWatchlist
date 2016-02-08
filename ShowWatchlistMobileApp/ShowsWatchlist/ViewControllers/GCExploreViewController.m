@@ -58,6 +58,7 @@ static NSString *showCell = @"ShowCell";
 
 -(void)viewDidLoad{
     _currentPage = 2;
+    self.navigationController.navigationBar.barTintColor = [UIColor yellowColor];
     UINib *nib = [UINib nibWithNibName:@"GCShowViewCell" bundle: nil];
     
     [self.tableView registerNib:nib forCellReuseIdentifier: showCell];

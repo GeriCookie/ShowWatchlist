@@ -30,6 +30,7 @@ static NSString *showCell = @"WatchCell";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.navigationController.navigationBar.barTintColor = [UIColor yellowColor];
     
     UINib *nib = [UINib nibWithNibName:@"GCWatchViewCell" bundle: nil];
     
@@ -47,7 +48,7 @@ static NSString *showCell = @"WatchCell";
             [shows addObject:[[GCShowModel alloc] initWithDict:obj]];
         }];
         
-        [self.shows addObjectsFromArray: shows];
+        [self.watchingShows addObjectsFromArray: shows];
         
         dispatch_async(dispatch_get_main_queue(), ^{
             [self.tableView reloadData];
@@ -64,30 +65,27 @@ static NSString *showCell = @"WatchCell";
 
 #pragma mark - Table view data source
 
-- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
 
-    return self.shows.count;
-}
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
 
-    return self.shows.count;
+    return self.watchingShows.count;
 }
 
 -(void)addShowToWatchlist : (id)sender{
     
     UIButton *btn = (UIButton *) sender;
-    NSString *showId = [[self.shows objectAtIndex:btn.tag] showId];
+    NSString *showId = [[self.watchingShows objectAtIndex:btn.tag] showId];
     
     AppDelegate *del = [UIApplication sharedApplication].delegate;
     NSString *baseURL = del.baseUrl;
     NSString *url = [NSString stringWithFormat:@"%@/watch/%@",baseURL, showId];
-    NSString *title = [[self.shows objectAtIndex:btn.tag] title];
+    NSString *title = [[self.watchingShows objectAtIndex:btn.tag] title];
     [self.data putAt:url withBody:nil headers:nil andCompletionHandler:^(NSDictionary *response, NSError *err) {
         NSLog(@"%@",response);
         dispatch_async(dispatch_get_main_queue(), ^{
             NSString *msg = [response objectForKey:@"message"];
-            BOOL isWatchingCurrShow = [[self.shows objectAtIndex:btn.tag] isWatching];
+            BOOL isWatchingCurrShow = [[self.watchingShows objectAtIndex:btn.tag] isWatching];
             if ([msg containsString:@"removed"]) {
                 isWatchingCurrShow = NO;
             } else {
@@ -117,7 +115,7 @@ static NSString *showCell = @"WatchCell";
                                 
                                 [[[[iToast makeText: [NSString stringWithFormat :@"%@ removed from watchlist :(", title]]
                                    setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
-                                [self.shows removeObjectAtIndex:btn.tag];
+                                [self.watchingShows removeObjectAtIndex:btn.tag];
                                 [self.tableView reloadData];
                             }];
                         }];
@@ -150,9 +148,9 @@ static NSString *showCell = @"WatchCell";
     GCWatchViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"WatchCell"];
     
     
-    cell.title.text = [[self.shows objectAtIndex:indexPath.row] title];
+    cell.title.text = [[self.watchingShows objectAtIndex:indexPath.row] title];
     
-    NSURL *url = [NSURL URLWithString: [[self.shows objectAtIndex: indexPath.row] imageUrl]];
+    NSURL *url = [NSURL URLWithString: [[self.watchingShows objectAtIndex: indexPath.row] imageUrl]];
     NSData *data = [NSData dataWithContentsOfURL:url];
     UIImage *img = [UIImage imageWithData:data];
     
@@ -182,8 +180,8 @@ static NSString *showCell = @"WatchCell";
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     GCShowDetailViewController *showDetailsVC = [self.storyboard instantiateViewControllerWithIdentifier:@"ShowDetailView"];
     
-    showDetailsVC.showId = [self.shows[indexPath.row] showId];
-    showDetailsVC.showTitle = [self.shows[indexPath.row] title];
+    showDetailsVC.showId = [self.watchingShows[indexPath.row] showId];
+    showDetailsVC.showTitle = [self.watchingShows[indexPath.row] title];
     
     [self.navigationController pushViewController:showDetailsVC animated:YES];
 }
@@ -205,14 +203,16 @@ static NSString *showCell = @"WatchCell";
 }
 
 
--(NSMutableArray *)shows {
+-(NSMutableArray *)watchingShows {
     AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
-    return delegate.shows;
+    return delegate.watchingShows;
 }
 
 
--(void)setShows:(NSMutableArray *)shows {
+
+
+-(void)setWatchingShows:(NSMutableArray *)watchingShows {
     AppDelegate *delegate =  [UIApplication sharedApplication].delegate;
-    delegate.shows = [NSMutableArray arrayWithArray:shows];
+    delegate.watchingShows = [NSMutableArray arrayWithArray:watchingShows];
 }
 @end

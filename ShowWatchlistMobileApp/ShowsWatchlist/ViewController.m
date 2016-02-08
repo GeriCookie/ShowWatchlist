@@ -11,6 +11,7 @@
 #import "AppDelegate.h"
 #import "GCUserModel.h"
 #import <CoreData/CoreData.h>
+#import "iToast.h"
 
 @interface ViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *usernameField;
@@ -46,7 +47,11 @@
             return ;
         }
         dispatch_async(dispatch_get_main_queue(), ^{
-        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"TabView"];
+        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LoadingScreen"];
+            
+            
+            [[[[iToast makeText: [NSString stringWithFormat :@"%@ logged in  in Watchlist ;)", username]]
+               setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
         [self showViewController:controller sender:self];
         });
     }];
@@ -60,11 +65,30 @@
     GCUserModel *user = [GCUserModel userWithUsername:username andPassHash:passHash];
     
     [self.data postAt:self.url withBody: user headers:nil andCompletionHandler:^(NSDictionary *response, NSError *err) {
-        if(err){
+        if (err) {
             NSLog(@"%@", err);
-            return;
         }
-        NSLog(@"%@",response);
+        NSEntityDescription *entity = [NSEntityDescription entityForName:@"User" inManagedObjectContext:self.managedContext];
+        NSManagedObject *newUser = [[NSManagedObject alloc] initWithEntity:entity insertIntoManagedObjectContext:self.managedContext];
+        
+        [newUser setValue:[response objectForKey:@"username"] forKey:@"username"];
+        [newUser setValue:[response objectForKey:@"token"] forKey:@"token"];
+        NSLog(@"%@",[response objectForKey:@"username"]);
+        NSLog(@"%@",[response objectForKey:@"token"]);
+        NSError *error;
+        [self.managedContext save:&error];
+        if (error) {
+            NSLog(@"Fuck...");
+            return ;
+        }
+        dispatch_async(dispatch_get_main_queue(), ^{
+            UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"LoadingScreen"];
+            
+            
+            [[[[iToast makeText: [NSString stringWithFormat :@"%@ register in Watchlist ;)", username]]
+               setGravity:iToastGravityBottom] setDuration:iToastDurationShort] show];
+            [self showViewController:controller sender:self];
+        });
     }];
 }
 -(void)viewWillAppear:(BOOL)animated {
@@ -75,20 +99,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Do any additional setup after loading the view, typically from a nib.
-/*
-    NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] initWithEntityName:@"User"];
-    
-    NSError *err;
-    
-    NSInteger user = [self.managedContext countForFetchRequest:fetchRequest error:&err];
-    
-    if (user > 0) {
-        UIViewController *controller = [self.storyboard instantiateViewControllerWithIdentifier:@"TabView"];
-//        [self showViewController:controller sender:self];
-        AppDelegate *delegate = [UIApplication sharedApplication].delegate;
-        delegate.window.rootViewController = controller;
-    }*/
 }
 
 -(GCHttpData *)data {

@@ -9,5 +9,5 @@
 #import <UIKit/UIKit.h>
 
 @interface GCWatchlistViewController : UITableViewController
-@property (strong, nonatomic)NSMutableArray *shows;
+@property (strong, nonatomic)NSMutableArray *watchingShows;
 @end
